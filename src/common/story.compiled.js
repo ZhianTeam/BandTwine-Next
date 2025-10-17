@@ -1,5 +1,5 @@
 // BandTwine 自动生成: 核心故事数据
-// 生成时间: 2025-10-17T05:40:11.177Z
+// 生成时间: 2025-10-17T05:57:06.695Z
 
 export default {
   "variables": {
@@ -136,6 +136,10 @@ export default {
         {
           "text": "Jump跳转测试",
           "target": "test_jump"
+        },
+        {
+          "text": "性能压力测试",
+          "target": "stress_test"
         }
       ],
       "segments": [
@@ -150,7 +154,7 @@ export default {
         },
         {
           "type": "text",
-          "content": "v0.3.0-beta",
+          "content": "v1.0-release",
           "tid": "start-text-2"
         },
         {
@@ -287,6 +291,15 @@ export default {
           "type": "link",
           "tid": "start-link-32",
           "index": 13
+        },
+        {
+          "type": "newline",
+          "tid": "start-newline-33"
+        },
+        {
+          "type": "link",
+          "tid": "start-link-34",
+          "index": 14
         }
       ]
     },
@@ -2440,6 +2453,271 @@ export default {
           "type": "link",
           "tid": "test_jump-link-15",
           "index": 4
+        }
+      ]
+    },
+    "stress_test": {
+      "actions": [
+        {
+          "type": "set",
+          "target": "var.calc1",
+          "value": "$(let r=0; for(let i=0; i<100; i++){ r += Math.sin(i) * Math.cos(var.world.time + i); }; 'sin/cos:' + r.toFixed(2))"
+        },
+        {
+          "type": "set",
+          "target": "var.calc2",
+          "value": "$(let s=var.show.score.value; for(let i=0; i<100; i++){ s = s * 1.001 - 0.1; }; 'score:' + s.toFixed(0))"
+        },
+        {
+          "type": "set",
+          "target": "var.calc3",
+          "value": "$(var.show.counter.value > 50 ? '高计数' : '低计数' + ' | ' + (var.world.day % 2 === 0 ? '偶数天' : '奇数天'))"
+        }
+      ],
+      "links": [
+        {
+          "text": "重新加载 (测试重绘性能)",
+          "target": "stress_test"
+        },
+        {
+          "text": "快速更新 (50次变量操作)",
+          "target": "stress_test",
+          "actions": [
+            {
+              "type": "set",
+              "target": "var.show.counter.value",
+              "value": "$(let c = var.show.counter.value; for(let i=0; i<50; i++){ c++; }; return c;)"
+            },
+            {
+              "type": "toast",
+              "message": "计数器已增加50次"
+            }
+          ]
+        },
+        {
+          "text": "返回主菜单",
+          "target": "start"
+        }
+      ],
+      "randoms": {
+        "text_block": [
+          {
+            "text": "这是一行用于压力测试的文本。ABCDEFG 1234567890。\n"
+          },
+          {
+            "text": "渲染性能是衡量引擎好坏的关键指标。The quick brown fox jumps over the lazy dog。\n"
+          },
+          {
+            "text": "每一行文本都是一个独立的segment，考验着tid和渲染引擎的diff能力。\n"
+          },
+          {
+            "text": "长风破浪会有时，直挂云帆济沧海。\n"
+          }
+        ]
+      },
+      "conds": {
+        "stress_cond": [
+          {
+            "condition": "var.show.counter.value > 100",
+            "text": "计数器 > 100"
+          },
+          {
+            "condition": "var.show.counter.value > 98",
+            "text": "计数器 > 98"
+          },
+          {
+            "condition": "var.show.counter.value > 96",
+            "text": "计数器 > 96"
+          },
+          {
+            "condition": "var.show.counter.value > 4",
+            "text": "计数器 > 4"
+          },
+          {
+            "condition": "var.show.counter.value > 2",
+            "text": "计数器 > 2"
+          },
+          {
+            "text": "计数器 <= 2"
+          }
+        ]
+      },
+      "segments": [
+        {
+          "type": "text",
+          "content": "性能压力测试",
+          "tid": "stress_test-text-0"
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-1"
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-2"
+        },
+        {
+          "type": "text",
+          "content": "警告：此页面包含大量元素和计算，可能会导致设备卡顿或响应缓慢。这是正常现象，用于测试引擎在极限负载下的表现。",
+          "tid": "stress_test-text-3"
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-4"
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-5"
+        },
+        {
+          "type": "text",
+          "content": "--- 1. 大量文本渲染 ---",
+          "tid": "stress_test-text-6"
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-7"
+        },
+        {
+          "type": "random",
+          "tid": "stress_test-random-8",
+          "id": "text_block"
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-9"
+        },
+        {
+          "type": "random",
+          "tid": "stress_test-random-10",
+          "id": "text_block"
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-11"
+        },
+        {
+          "type": "random",
+          "tid": "stress_test-random-12",
+          "id": "text_block"
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-13"
+        },
+        {
+          "type": "random",
+          "tid": "stress_test-random-14",
+          "id": "text_block"
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-15"
+        },
+        {
+          "type": "random",
+          "tid": "stress_test-random-16",
+          "id": "text_block"
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-17"
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-18"
+        },
+        {
+          "type": "text",
+          "content": "--- 2. 复杂条件渲染 ---",
+          "tid": "stress_test-text-19"
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-20"
+        },
+        {
+          "type": "condition",
+          "tid": "stress_test-condition-21",
+          "id": "stress_cond"
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-22"
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-23"
+        },
+        {
+          "type": "text",
+          "content": "--- 3. 密集表达式计算 ---",
+          "tid": "stress_test-text-24"
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-25"
+        },
+        {
+          "type": "text",
+          "content": "计算结果(见状态栏 'calc' 变量): ",
+          "tid": "stress_test-text-26"
+        },
+        {
+          "type": "variable",
+          "tid": "stress_test-variable-27",
+          "path": "calc1"
+        },
+        {
+          "type": "text",
+          "content": ", ",
+          "tid": "stress_test-text-28"
+        },
+        {
+          "type": "variable",
+          "tid": "stress_test-variable-29",
+          "path": "calc2"
+        },
+        {
+          "type": "text",
+          "content": ", ",
+          "tid": "stress_test-text-30"
+        },
+        {
+          "type": "variable",
+          "tid": "stress_test-variable-31",
+          "path": "calc3"
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-32"
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-33"
+        },
+        {
+          "type": "link",
+          "tid": "stress_test-link-34",
+          "index": 0
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-35"
+        },
+        {
+          "type": "link",
+          "tid": "stress_test-link-36",
+          "index": 1
+        },
+        {
+          "type": "newline",
+          "tid": "stress_test-newline-37"
+        },
+        {
+          "type": "link",
+          "tid": "stress_test-link-38",
+          "index": 2
         }
       ]
     }

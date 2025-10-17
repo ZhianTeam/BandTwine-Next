@@ -3,9 +3,9 @@
     "title": "BandTwine",
     "description": "BandTwine",
     "author": "OrPudding",
-    "version": "0.0.1",
-    "versionCode": 1,
-    "releaseDate": "2025-08-30",
+    "version": "1.0-rel",
+    "versionCode": 10,
+    "releaseDate": "2025-10-17",
     "license": "CC-0",
     "copyright": "Copyright © 2025 OrPudding.",
     "indexNode": "start"
@@ -88,7 +88,7 @@
     },
     "nodes": {
       "start": {
-        "text": "引擎核心特性测试\nv0.3.0-beta\n测试项目：\n{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}\n{7}\n{8}\n{9}\n{10}\n{11}\n{12}\n{13}",
+        "text": "引擎核心特性测试\nv1.0-release\n测试项目：\n{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}\n{7}\n{8}\n{9}\n{10}\n{11}\n{12}\n{13}\n{14}",
         "links": [
           {
             "text": "基础功能测试",
@@ -145,6 +145,10 @@
           {
             "text": "Jump跳转测试",
             "target": "test_jump"
+          },
+          {
+            "text": "性能压力测试",
+            "target": "stress_test"
           }
         ]
       },

@@ -1,0 +1,65 @@
+{"nodes":{
+"stress_test": {
+    "text": "性能压力测试\n\n警告：此页面包含大量元素和计算，可能会导致设备卡顿或响应缓慢。这是正常现象，用于测试引擎在极限负载下的表现。\n\n--- 1. 大量文本渲染 ---\n{random.text_block}\n{random.text_block}\n{random.text_block}\n{random.text_block}\n{random.text_block}\n\n--- 2. 复杂条件渲染 ---\n{cond.stress_cond}\n\n--- 3. 密集表达式计算 ---\n计算结果(见状态栏 'calc' 变量): {var.calc1}, {var.calc2}, {var.calc3}\n\n{0}\n{1}\n{2}",
+    "actions": [
+      {
+        "type": "set",
+        "target": "var.calc1",
+        "value": "$(let r=0; for(let i=0; i<100; i++){ r += Math.sin(i) * Math.cos(var.world.time + i); }; 'sin/cos:' + r.toFixed(2))"
+      },
+      {
+        "type": "set",
+        "target": "var.calc2",
+        "value": "$(let s=var.show.score.value; for(let i=0; i<100; i++){ s = s * 1.001 - 0.1; }; 'score:' + s.toFixed(0))"
+      },
+      {
+        "type": "set",
+        "target": "var.calc3",
+        "value": "$(var.show.counter.value > 50 ? '高计数' : '低计数' + ' | ' + (var.world.day % 2 === 0 ? '偶数天' : '奇数天'))"
+      }
+    ],
+    "links": [
+      {
+        "text": "重新加载 (测试重绘性能)",
+        "target": "stress_test"
+      },
+      {
+        "text": "快速更新 (50次变量操作)",
+        "target": "stress_test",
+        "actions": [
+          {
+            "type": "set",
+            "target": "var.show.counter.value",
+            "value": "$(let c = var.show.counter.value; for(let i=0; i<50; i++){ c++; }; return c;)"
+          },
+          {
+            "type": "toast",
+            "message": "计数器已增加50次"
+          }
+        ]
+      },
+      {
+        "text": "返回主菜单",
+        "target": "start"
+      }
+    ],
+    "randoms": {
+      "text_block": [
+        { "text": "这是一行用于压力测试的文本。ABCDEFG 1234567890。\n" },
+        { "text": "渲染性能是衡量引擎好坏的关键指标。The quick brown fox jumps over the lazy dog。\n" },
+        { "text": "每一行文本都是一个独立的segment，考验着tid和渲染引擎的diff能力。\n" },
+        { "text": "长风破浪会有时，直挂云帆济沧海。\n" }
+      ]
+    },
+    "conds": {
+      "stress_cond": [
+        { "condition": "var.show.counter.value > 100", "text": "计数器 > 100" },
+        { "condition": "var.show.counter.value > 98", "text": "计数器 > 98" },
+        { "condition": "var.show.counter.value > 96", "text": "计数器 > 96" },
+        { "condition": "var.show.counter.value > 4", "text": "计数器 > 4" },
+        { "condition": "var.show.counter.value > 2", "text": "计数器 > 2" },
+        { "text": "计数器 <= 2" }
+      ]
+    }
+  }
+}}

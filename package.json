@@ -10,7 +10,7 @@
     "compile": "node ./scripts/compile.js",
     "compile:force": "node ./scripts/compile.js --force",
     "build": "npm run compile && aiot build --enable-jsc --enable-protobuf",
-    "release": "npm run compile && aiot release --enable-jsc --enable-protobuf",
+    "release": "npm run compile && aiot release --enable-image-png8 --enable-protobuf --enable-jsc",
     "watch": "aiot watch --open-nuttx",
     "lint": "eslint --format codeframe --fix --ext .ux,.js src/"
   },
