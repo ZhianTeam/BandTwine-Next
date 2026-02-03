@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "@aiot-toolkit/jsc": "^1.0.7",
-    "@babel/preset-react": "^7.27.1"
+    "@babel/preset-react": "^7.27.1",
+    "vitepress": "^1.6.4"
   }
 }

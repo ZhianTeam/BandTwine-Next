@@ -5,3 +5,5 @@ build
 neofetch.sh
 docs/.vitepress/cache
 .vitepress/cache
+build
+game
