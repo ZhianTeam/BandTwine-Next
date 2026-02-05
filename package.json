@@ -10,6 +10,10 @@
     "compile": "node ./scripts/compile.js",
     "compile:force": "node ./scripts/compile.js --force",
     "build": "npm run compile && aiot build --enable-jsc --enable-protobuf",
+    "lint": "eslint --format codeframe --fix --ext .ux,.js src/",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
     "release": "npm run compile && aiot release --enable-image-png8 --enable-protobuf --enable-jsc",
     "watch": "aiot watch --open-nuttx",
     "lint": "eslint --format codeframe --fix --ext .ux,.js src/"
