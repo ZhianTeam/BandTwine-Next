@@ -78,5 +78,8 @@ Inherited from original project - **AGPLv3**.
 However, you **can include non-free assets**, whether they're commercial licensed artworks, storylines, scripts, etc. 
 
 > [!WARNING]
-> Based on [original description](https://github.com/OrPudding/VelaOS_BandTwine/blob/main/README.md/#-%E5%BC%80%E6%BA%90%E5%8D%8F%E8%AE%AE) of [@OrPudding](https://github.com/OrPudding), this project seem to be **copyrighted** (or more precisely, **"non-free/proprietary project"**). This is already violated the LICENSE and broke the promise of "鼓励共建开源世界" (Fostering a collaborative open-source world).
+> Based on [original description](https://github.com/OrPudding/VelaOS_BandTwine/blob/main/README.md/#-%E5%BC%80%E6%BA%90%E5%8D%8F%E8%AE%AE) of [@OrPudding](https://github.com/OrPudding), this project seems to be **copyrighted** (or more precisely, **"non-free/proprietary project"**).
+>
+> This already violates the LICENSE and broke the promise of "鼓励共建开源世界" (Fostering a collaborative open-source world).
+> 
 > We give privileges to all developers. You **can** remove ANY notice in *"About"* page, just keep the project's link. 
