@@ -1,11 +1,14 @@
 <img src="/src/common/icon.png" width="100px" align="left">
+
 ### BandTwine Next
+
 ***Play Twine on your Mi Band.** But much better.*
 
 ---
 
 **BandTwine** is a 3party implementation/port of [Twine](https://twinery.org/), which is a groundbreaking interactive fiction engine. 
-We’ve brought its powerful, open-ended storytelling capabilities to resource-constrained Xiaomi wearables running HyperOS (NuttX) - affectionately dubbed the "Wrist Steam Engine" by [AstroBox](https://github.com/AstralLightStudio/AstroBox-NG) (lol).
+
+We’ve brought its powerful, open-ended storytelling capabilities to resource-constrained Xiaomi wearables running HyperOS (NuttX) - affectionately dubbed the "Wrist Steam Engine" by [AstroBox](https://github.com/AstralSightStudios/AstroBox-NG) (lol).
 
 ## Core: Twee Compatibility
 Tired at checking out `{}`, `[]` and a lot of `$(...)`? Angry at pre-defining variables like setting up USE flags? We fully support Twine's official markup language: **Twee**.
@@ -60,7 +63,7 @@ What about Twee?
 |-------|------|-------|--------|------|
 | Xiaomi | Smart Band | 10 Series | ✓ Full Support | Tested on real Steam Engine. |
 | | | 9 Pro | ✓ Full Support | Tested on real Steam Engine. |
-| | | 9 (Standard/NFC) | 🟡 Partial Support | Tested on real Steam Engine. @OrPudding said this is needed a workaround [^1]. I'll try to fix it. |
+| | | 9 (Standard/NFC) | 🟡 Partial Support | Tested on real Steam Engine. Needs a workaround [^1]. I'll try to fix it. |
 | | | 8 Pro | ✓ Full Support | |
 | | Smart Watch | S5/4/3 | ✓ Full Support* | I don't have a real one. More reports needed. |
 | REDMI | Smart Watch | 5/4 | ⚪ In Progress | Same as *Xiaomi Smart Watch*. |
@@ -75,5 +78,5 @@ Inherited from original project - **AGPLv3**.
 However, you **can include non-free assets**, whether they're commercial licensed artworks, storylines, scripts, etc. 
 
 > [!WARNING]
-> Based on [original description](https://github.com/OrPudding/BandTwine/blob/band/README.md/#📜%20开源协议) of @OrPudding, this project seem to be **copyrighted** (or more precisely, **"non-free/proprietary project"**). This is already violated the LICENSE and broke the promise of "鼓励共建开源世界" (Fostering a collaborative open-source world).
+> Based on [original description](https://github.com/OrPudding/VelaOS_BandTwine/blob/main/README.md/#-%E5%BC%80%E6%BA%90%E5%8D%8F%E8%AE%AE) of [@OrPudding](https://github.com/OrPudding), this project seem to be **copyrighted** (or more precisely, **"non-free/proprietary project"**). This is already violated the LICENSE and broke the promise of "鼓励共建开源世界" (Fostering a collaborative open-source world).
 > We give privileges to all developers. You **can** remove ANY notice in *"About"* page, just keep the project's link. 
