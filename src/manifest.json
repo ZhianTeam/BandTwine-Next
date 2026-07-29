@@ -1,72 +1,63 @@
 {
-  "package": "moe.orpu.bandtwine",
-  "name": "BandTwine",
-  "versionName": "1.0-release",
-  "versionCode": 10,
+  "package": "org.zhian.bandtwine.demo",
+  "name": "BandTwine Next",
+  "versionName": "2.0-alpha",
+  "versionCode": 1785304611,
   "minPlatformVersion": 1000,
   "icon": "/common/icon.png",
-  "deviceTypeList": [
-    "watch"
-  ],
+  "deviceTypeList": ["watch"],
   "features": [
-    {
-      "name": "system.router"
-    },
-    {
-      "name": "system.prompt"
-    },
-    {
-      "name": "system.storage"
-    },
-    {
-      "name": "system.file"
-    },
-    {
-      "name": "system.app"
-    },
-    {
-      "name": "system.vibrator"
-    },
-    {
-      "name": "system.device"
-    },
-    {
-      "name": "system.interconnect"
-    },
-    {
-      "name": "system.crypto"
-    }
+    { "name": "system.app" },
+    { "name": "system.device" },
+    { "name": "system.router" },
+    { "name": "system.configuration" },
+    { "name": "system.storage" },
+    { "name": "system.file" },
+    { "name": "system.network" },
+    { "name": "system.brightness" },
+    { "name": "system.battery" },
+    { "name": "system.geolocation" },
+    { "name": "system.vibrator" },
+    { "name": "system.event" },
+    { "name": "system.sensor" },
+    { "name": "system.record" },
+    { "name": "system.fetch" },
+    { "name": "system.interconnect" },
+    { "name": "system.uploadtask" },
+    { "name": "system.request" },
+    { "name": "system.crypto" },
+    { "name": "system.prompt" },
+    { "name": "system.audio" }
   ],
   "permissions": [
+    { "name": "hapjs.permission.LOCATION" },
     { "name": "hapjs.permission.DEVICE_INFO" }
   ],
   "config": {
-    "logLevel": "log",
+    "logLevel": "verbose",
     "designWidth": "device-width"
   },
   "router": {
     "entry": "pages/index",
     "pages": {
       "pages/index": {
-        "component": "index"
+        "conponment": "index"
+      },
+      "pages/verify": {},
+      "pages/game": {
+        "conponment": "game"
+      },
+      "pages/checkpoint": {
+        "conponment": "checkpoint"
+      },
+      "pages/settings": {
+        "conponment": "settings"
       },
       "pages/about": {
-        "component": "about"
+        "conponment": "about"
       },
-      "pages/start": {
-        "component": "start"
-      },
-      "pages/save": {
-        "component": "save"
-      },
-      "pages/engine": {
-        "component": "engine"
-      },
-      "pages/verify": {
-        "component": "verify"
-      },
-      "pages/advanced": {
-        "component": "advanced"
+      "pages/dev": {
+        "conponment": "dev"
       }
     }
   }

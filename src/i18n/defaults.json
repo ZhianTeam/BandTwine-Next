@@ -1,1 +1,9 @@
-{"a":{"b":"default hello"}}
+{
+  "app": {
+    "name": "BandTwine Next"
+  },
+
+  "index": {
+    "title": "BandTwine"
+  }
+}
