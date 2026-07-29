@@ -1,9 +1,114 @@
-node_modules
-dist
-build
-.idea
-neofetch.sh
-docs/.vitepress/cache
-.vitepress/cache
-build
-game
+# `.gitignore` Template for BandTwine Next
+# Revision number: 3
+# License: AGPL-3.0
+# Copyleft (c) 2025-2026 ZhianTeam. All rights may not reserved.
+
+# This is an out-of-box `.gitignore` template for most of developers/writers.
+# You can modify freely as you needed.
+
+# BandTwine build Toolchain's temporary directory.
+/.bt-build/
+/.bt-tmp/
+/.bt-checker/
+
+# Local modules cache.
+node_modules/
+.npm/
+.yarn/
+
+# Npm/Yarn/pnpm logs.
+npm-debug.log*
+yarn-error.log*
+yarn-debug.log*
+pnpm-debug.log*
+logs/
+*.log
+*.log.*
+
+# Npm/Yarn config files.
+.npmrc
+.yarnrc
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs.
+# Should not be published as they took a lot of unnecessary spaces.
+build/
+dist/
+out/
+lib/
+
+# Certificate for Signing RPKs.
+# We've added this to protect your signature. 
+sign/
+
+# Temporary files.
+# If you're brainstorming, these rules can protect your work.
+test/
+tmp/
+temp/
+*.tmp
+*.bak
+
+
+# Modern OS are polluting rubbish into your Git repository.
+# They can slowdown your `git clone` and `push` speed.
+# The following rules are blocking them.
+## macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+## Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+## Linux
+lost+found/
+
+# Also, AIoT IDE (Xiaomi's official IDE for RPKs) polluting shit.
+.vscode/*
+# !IMPORTANT!
+# To keep your project 100% reproducible,
+# we have kept the important configuration files.
+# This can make each AIoT IDE instance has same behaviors and settings.
+# If you really don't want them,
+# remove the 'bang' (!) mark before each file.
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+# Workspace files.
+*.code-workspace
+
+# If you're using coverage scanner tools,
+# the middle outputs should be discarded.
+coverage/
+.nyc_output/
+
+# Compressed files.
+# However, if you're sharing bundled assets/artworks,
+# COMMENT the following items!
+*.zip
+*.rar
+*.7z
+*.tar.*
+
+# If you're using Agentic tools for your own work,
+# like brainstorming, artworks generating,
+# these rules will protect them.
+
+# Definition files
+/CLAUDE.md
+/GEMINI.md
+/AGENTS.md
+# Configurations
+/.claude
+/.codex
+/.gemini
+/.agents
+/.codegraph
+/.trellis
