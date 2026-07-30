@@ -1,0 +1,105 @@
+<!-- en_US.UTF-8 -->
+--- NOTICE FILE ---
+Project: BandTwine Next
+License: AGPL-3.0
+Revision Date: July 30, 2026
+
+For legal practitioners: prior to adjudicating or participating in any litigation, dispute, or proceeding concerning the BandTwine interactive novel framework, this document shall serve as the official legal position of ZhianTeam. All disputes and conflicts must be resolved strictly in accordance with the terms set forth herein.
+
+=== 0. Definitions ===
+• "Fork": Any act by a natural person or legal entity to directly modify and distribute the BandTwine framework, resulting in an independent product.
+• "Derivative Work": Any product created by a natural person or legal entity that functions similarly to the BandTwine framework, directly utilizes its source code, and is compliantly open-sourced under the AGPL-3.0 license.
+• "Distributed Product": Any packaged and distributed product where a natural person or legal entity has integrated their own creative content with the BandTwine framework or its derivatives.
+
+=== 1. Legal Ownership ===
+You may have noticed that all source code files in this project contain the copyright notice: "All rights 'may not' reserved".
+The BandTwine framework (hereinafter referred to as the "Product") is an interactive novel engine built on the Xiaomi Vela Quick App framework, developed by ZhianTeam based in Shanghai. It is categorized as Free and Open Source Software (FOSS). Under normal circumstances, anyone is free to use, modify, and distribute the Product, as well as create forks or derivatives. Theoretically, there is no de facto legal ownership, and this disclaimer is intended to "relinquish all restrictions except those mandated by the AGPL-3.0". However, ZhianTeam reserves all rights in the event of the following circumstances:
+
+• Any violation of the project's primary AGPL-3.0 license;
+• Malicious removal or alteration of copyright attributions for ZhianTeam and its contributors within the project's source code, documentation, or binary distributions;
+• Imposing restrictions—whether express, implied, or via proprietary agreements—on downstream users' rights to modify, distribute, or re-license the Product as granted by the AGPL-3.0;
+• Using the core technology of this Product or its derivatives to apply for exclusive patents with the intent to initiate patent litigation or copyright extortion against the FOSS community;
+• Falsely claiming official endorsement by, or affiliation with, ZhianTeam for commercial backing, fraudulent activities, or misleading promotion of any derivative or distributed product.
+
+All contributors to this Product share equal copyright and legal rights with ZhianTeam.
+
+* Note: GitHub user @OrPudding is the upstream author of the original project. Since this account and its associated entity have no affiliation with ZhianTeam, they hold no governance, veto rights, or intellectual property claims over the modifications, additions, and the consolidated distribution of this Fork ("BandTwine Next").
+
+ZhianTeam has no affiliation with Beijing Xiaomi Communication Technology Co., Ltd. or Beijing Xiaomi Mobile Software Co., Ltd. BandTwine is not a product of Xiaomi.
+
+=== 2. Copyleft and Licensing Contagiousness ===
+For the Product itself, all forks inherit the AGPL-3.0 license and the original copyright provisions. Please refer to Section 1 of this document for specific details.
+For Derivative Works, copyright ownership belongs to their respective creators. All Derivative Works must inherit the AGPL-3.0 license.
+
+Under the terms of the AGPL license, outputs external to the AGPL product itself (i.e., "Distributed Products") are not governed by the AGPL license.
+Users may embed or link non-free materials when using this Product, including but not limited to:
+• Copyrighted materials;
+• Commercial products;
+• Proprietary products;
+• Independently created works;
+• Any other items not categorized as free software.
+
+These assets are not subject to the AGPL-3.0 license. Unless explicitly stated otherwise, the individuals or entities embedding these assets (the "Original Creators") retain all legal copyrights. Any disputes involving these assets shall be resolved in accordance with their respective licenses. If an asset does not declare a license, it will default to the Creative Commons Zero (CC0) dedication. The Product and ZhianTeam shall not be party to any legal disputes arising from such assets. To ensure the legal distributability of the project, any original assets owned and embedded by users without an explicit license declaration shall, by default, be deemed distributed under the CC0 1.0 Universal license. For any third-party unlicensed assets embedded by users, the user must resolve the licensing issues independently; ZhianTeam shall not be held liable for any copyright infringement arising therefrom.
+
+=== 3. Disclaimers ===
+This Product is provided "as is" without warranty of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement. All operational and firmware-level risks are solely assumed by the distributors of the Distributed Product and the end users.
+This Product is software designed to run on highly resource-constrained embedded systems. ZhianTeam shall not be legally or technically liable for any device crashes, boot loops, data loss, abnormal wear and tear of NAND non-volatile memory, or any physical hardware damage caused by syntax conflicts, infinite loops, or memory leaks within user-written Twee scripts.
+ZhianTeam is not responsible for providing maintenance, technical support, or liability compensation for any third-party forks, unofficial distributions, or custom-compiled builds.
+
+=== 4. Interface Sovereignty and Attribution Waiver ===
+ZhianTeam hereby grants all downstream developers full control over the Product's user interface, including but not limited to the "About" page. We explicitly permit and support the modification, reconstruction, or complete removal of any specific UI elements, ZhianTeam branding, or non-legal statements from the "About" page. You are not required to retain any non-legal branding in your Distributed Products. The sole compliance obligation for downstream developers is to maintain open-source license integrity at the source-code level, which includes keeping the necessary copyright notices at the top of the source files to comply with AGPL-3.0 distribution requirements.
+
+Any attempt to force-bind downstream user interfaces through proprietary clauses—such as prohibiting modifications to the "About" page—is considered a betrayal of the FOSS spirit and a material breach of the AGPL-3.0 license. In accordance with Section 7 of the AGPL-3.0 license, this document holds supreme interpretive authority and overrides/renders null and void any restrictive clauses in upstream versions that contradict the principles of free distribution under the AGPL-3.0.
+
+<!-- zh_CN.UTF-8 -->
+--- NOTICE 文件 ---
+项目名: BandTwine Next
+项目许可证：AGPL-3.0
+修订日期：2026 年 7 月 30 日
+
+作为法律从业者，在审判/参与任何与 BandTwine 小说框架相关的案件/纠纷等之前，将此声明文件作为致安团队 (ZhianTeam) 的正式法律观点。一切纠纷/冲突必须以此声明文件为基准。
+
+=== 0. 术语定义 ===
+• "fork"：指自然人/实体直接对 BandTwine 框架产品本身进行修改、分发并成为独立产品的行为。
+• "衍生品"：指自然人/实体创作的行为类似于 BandTwine 框架的，且 直接 使用了 BandTwine 框架相关源代码并合规按照 AGPL-3.0 许可证再开源的产品。
+• "交付产品"；指自然人/实体对 BandTwine 框架或其衍生品加入自有创作内容后进行打包和分发的产品。
+
+=== 1. 法律归属 ===
+您已经注意到了：在本项目所有的源代码文件版权声明中，使用了措辞 "All rights 'may not' reserved"。
+BandTwine 框架 (以下简称 “产品”) 作为由上海市致安团队 (ZhianTeam) 开发的基于小米 Vela 快应用框架的互动型小说框架产品，其类别属于 “自由-开源软件" (FOSS)。在一般情况下，任何人都可自由使用、修改、分发产品本身以及创建产品的 fork/衍生品，理论上不存在事实性法律归属，故此声明 表意为 “让渡除 AGPL-3.0 规定之外的一切限制”。然而，一旦涉及以下情况，致安团队 (ZhianTeam) 保留所有权利：
+
+• 违反了项目主体 AGPL-3.0 许可证的任何行为的；
+• 恶意移除或篡改本项目源代码、文档或二进制交付物中致安团队 (ZhianTeam) 及贡献者著作权署名的；
+• 以任何明示、暗示或附加私有协议的形式，限制下游用户行使 AGPL-3.0 赋予的修改、分发及再授权权利的；
+• 利用本项目核心技术或其衍生品申请排他性专利，企图对 FOSS 社区进行专利诉讼或版权勒索的；
+• 假借致安团队 (ZhianTeam) 官方名义对衍生品或交付产品进行商业背书、欺诈或误导性宣传的。
+
+本产品的所有贡献者 (contributor) 享有与致安团队 (ZhianTeam) 同等的著作权和法律权利。
+
+* 注记：GitHub 用户 @OrPudding 为原始项目的上游作者。因该账户及其实体身份与致安团队 (ZhianTeam) 无任何关联，因此该实体对本分支项目 ("BandTwine Next") 的修改、新增代码及整体分发版本不享有任何治理权、否决权或知识产权主张。
+
+致安团队与北京小米通讯科技有限公司和北京小米移动软件有限公司无任何关联。BandTwine 不属于小米公司产品。
+
+=== 2. 传染性 ===
+对于产品本身，所有 fork 均继承 AGPL-3.0 许可证和版权归属。具体细则请参考本声明的第 1 节。
+对于衍生品，版权归属属于衍生品的所有者。所有衍生品均继承 AGPL-3.0 许可证。
+
+根据 AGPL 许可证本身的定义，AGPL 产品本身外的产物 (即 “交付产品”) 不受 AGPL 许可证影响。
+用户在使用本产品时，可能会往项目中嵌入或外挂非自由产物，包括但不限于：
+• 版权所有的产物；
+• 商业化的产物；
+• 专有的产物；
+• 独立创作的产物；
+• 本列表中未列出，但属于非自由 (Non-Free) 类别的任何产物。
+
+这些产物均不按照 AGPL-3.0 许可证进行处理。除非特别声明，否则嵌入/外挂这些产物的自然人/实体 (即 “原创者”) 享有法律性著作权。在处理纠纷时，按照原创者或产物自带的许可证进行处理。如产物未声明任何许可证，则按照项目默认规范 (CC-0) 进行处理。产品或致安团队不涉及此类法律纠纷。为确保项目整体的可分发性，用户嵌入且拥有的自有原创资产若未明示许可证声明，将默认视为基于 CC0 协议分发。对于用户嵌入的任何第三方未授权资产，用户必须自行解决授权，致安团队不承担由此引发的任何著作权侵权连带法律责任。 
+
+=== 3. 免责 ===
+本产品不提供任何形式的明示或暗示担保，包括但不限于对特定用途的适用性或无侵权担保。一切运行风险及固件安全风险由交付产品的分发者和最终用户自行承担。
+本产品为运行在极度受限的嵌入式系统的应用软件。致安团队 (ZhianTeam) 不对因用户编写的 Twee 脚本语法冲突、死循环、内存溢出所导致的设备死机、重启、数据丢失、NAND 非易失性存储器异常磨损或任何物理硬件损坏承担任何法律与技术责任。
+致安团队 (ZhianTeam) 不负责为任何第三方魔改版、非官方分发版或个人编译版提供运行维护、技术支持与事故追偿。
+
+=== 4. 界面主权与署名放行 ===
+致安团队 (ZhianTeam) 在此授予所有下游开发者对本产品界面 (包括但不限于 “关于” 页面) 的完全控制权。我们明确支持并放行您根据项目需求修改、重构或完全移除 “关于” 页面的任何特定 UI 元素、致安团队品牌标识或非法律性声明。您无需在交付产品中保留任何非法律性的特定强制品牌展示。下游唯一的合规约束为保持源代码层面的开源许可证完整性，以及在项目源文件头部保留必要的著作权归属声明，以符合 AGPL-3.0 许可证的分发要求。
+
+任何企图利用“禁止修改关于页”等私有附加条款强制绑定下游用户界面的行为，均被视为对 FOSS 精神的背叛及对 AGPL-3.0 协议的实质性违背。根据 AGPL-3.0 许可证第 7 条，本声明文件拥有最高解释效力，覆盖并废除上游版本中一切违背 AGPL-3.0 自由分发原则的限制性条款。
