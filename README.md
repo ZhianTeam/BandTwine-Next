@@ -22,33 +22,109 @@ Tired at checking out `{}`, `[]` and a lot of `$(...)`? Angry at pre-defining va
 Many GUIs can create Twees. Check this **quick comparison**:
 
 ```json
-// This is original BandTwine storytelling logic.
+// This is original BandTwine storytelling logic. Code from official's example.
+// It's completely bloat. With very low SNR, excessive entropy and an overwhelming cognitive load.
 
 {
-  "start_node": {
-    "title": "宁静的早晨",
-    "text": "你从睡梦中醒来，阳光透过窗帘洒在你的脸上。这是一个新的开始。\n\n你决定 {0} 还是 {1}？",
-    "links": [
-      { "text": "起床", "target": "wake_up_scene" },
-      { "text": "再睡一会儿", "target": "sleep_more_scene" }
-    ],
-    "actions": [
-      { "type": "set", "target": "var.player.energy", "value": 100 },
-      { "type": "toast", "message": "新的一天开始了！" }
-    ]
+  "metadata": {
+    "indexNode": "start"
+  },
+  "variables": {
+    "player": {
+      "hasKey": false
+    }
+  },
+  "nodes": {
+    "start": {
+      "text": "你在一间安静的房间里醒来，阳光透过窗帘的缝隙洒在地板上。房间的另一头，有一扇紧闭的木门。你决定 {0}、{1}，或是 {2}？",
+      "links": [
+        { "text": "查看窗外", "target": "look_outside" },
+        { "text": "检查床边的桌子", "target": "check_desk" },
+        { "text": "走向那扇门", "target": "locked_door" }
+      ]
+    },
+    "look_outside": {
+      "text": "你拉开窗帘，外面是一片宁静的森林，薄雾弥漫在树林间。\n\n{0}",
+      "links": [
+        { "text": "回到房间中央", "target": "start" }
+      ]
+    },
+    "check_desk": {
+      "text": "你走向桌子，上面放着一盏熄灭的油灯和一本合上的旧书。你决定 {0}，或者 {1}。",
+      "links": [
+        {
+          "text": "拿起书本",
+          "target": "found_key",
+          "actions": [
+            { "type": "set", "target": "var.player.hasKey", "value": true }
+          ]
+        },
+        { "text": "先不管它", "target": "start" }
+      ]
+    },
+    "found_key": {
+      "text": "你拿起了书，发现书下压着一枚小小的黄铜钥匙。你把它放进了口袋。\n\n{0}",
+      "links": [
+        { "text": "回到房间中央", "target": "start" }
+      ]
+    },
+    "locked_door": {
+      "text": "这是一扇厚重的木门，上面有一个老旧的黄铜锁孔。\n\n{0}\n{1}\n\n钥匙状态：{var.player.hasKey}",
+      "links": [
+        {
+          "text": "用钥匙开门",
+          "target": "door_unlocked",
+          "condition": "var.player.hasKey"
+        },
+        { "text": "转身离开", "target": "start" }
+      ]
+    },
+    "door_unlocked": {
+      "text": "你将钥匙插入锁孔，轻轻一转，门开了。门外是通往自由的走廊。你的冒险，才刚刚开始……"
+    }
   }
 }
 ```
 
 What about Twee?
 ```twee
-:: 宁静的早晨
-<<set $player.energy = 100>>
-<<run Vela.toast("新的一天开始了！")>>
-你从睡梦中醒来，阳光透过窗帘洒在你的脸上。这是一个新的开始。
+:: 起始
+<<tag "start">>
+<<set $gotKey to false>>
+你在一间安静的房间里醒来，阳光透过窗帘的缝隙洒在地板上。房间的另一头，有一扇紧闭的木门。
+你决定[[查看窗外|看看窗外]]、[[检查床边的桌子|看看桌子]]还是[[走向那扇门|看看门]]呢？
 
-你决定 [[起床->wake_up_scene]] 还是 [[再睡一会儿->sleep_more_scene]]？
+:: 看看窗外
+你拉开窗帘，外面是一片宁静的森林，薄雾弥漫在树林间。
+[[回到房间中央|start]]
+
+:: 看看桌子
+<<script 'prompt.showToast({ message: `当前钥匙状态：$gotKey`, duration: 1500 })'>>
+你走向桌子，上面放着一盏熄灭的油灯和一本合上的旧书。你决定[[拿起书本|拿起书本]][$gotKey to true]还是[[先不管它|start]]呢？
+
+:: 看看门
+<<script 'prompt.showToast({ message: `当前钥匙状态：$gotKey`, duration: 1500 })'>>
+这是一扇厚重的木门，上面有一个老旧的黄铜锁孔。
+
+<<if $gotKey === true>>
+你想起了刚刚找出的钥匙，你可以[[用钥匙开门|打开那扇门]]，也可以[[转身离开|起始]]继续探索。
+<<else>>
+大门是紧闭的。你也没有东西能打开它，无奈只好[[转身离开|起始]]。
+<</if>>
+
+:: 拿起书本
+<<script 'prompt.showToast({ message: `钥匙找到了！当前钥匙状态：$gotKey`, duration: 1500 })'>>
+你拿起了书，发现书下压着一枚小小的黄铜钥匙。
+
+:: 打开那扇门
+你将钥匙插入锁孔，轻轻一转，门开了。门外是通往自由的走廊。你的冒险，才刚刚开始……
 ```
+
+Simple. WYSIWYG. Embedded JavsScript. Vela API.
+
+For beginning of Twee there were many docs and even an [interactive step-by-step guide](https://huanmeng692.github.io/Tutorial/) for you.[^1]
+
+[^1]: Best thanks to [@huanmeng692](https://github.com/huanmeng692/) for creating that amazing guide!
 
 ## Features
 - [x] **Full Compatibility of Twine Twee.** No "how to exit Vim" and "why my JSON malformed" anymore! Use any Twine editor, export as Twee, then integrate it to your project! Converter will be developed *soon*.
@@ -70,13 +146,13 @@ What about Twee?
 |-------|------|-------|--------|------|
 | Xiaomi | Smart Band | 10 Series | ✓ Full Support | Tested on real Steam Engine. |
 | | | 9 Pro | ✓ Full Support | Tested on real Steam Engine. |
-| | | 9 (Standard/NFC) | 🟡 Partial Support | Tested on real Steam Engine. Needs a workaround [^1]. I'll try to fix it. |
+| | | 9 (Standard/NFC) | 🟡 Partial Support | Tested on real Steam Engine. Needs a workaround [^2]. I'll try to fix it. |
 | | | 8 Pro | ✓ Full Support | |
 | | Smart Watch | S5/4/3 | ✓ Full Support* | I don't have a real one. More reports needed. |
 | REDMI | Smart Watch | 5/4 | ⚪ In Progress | Same as *Xiaomi Smart Watch*. |
 | | Smart Band | *any* | × Unsupported | **Non-Vela** devices. |
 
-[^1]: Needs to change `designWidth` in `manifest.json` to `212`.
+[^2]: Needs to change `designWidth` in `manifest.json` to `212`.
 
 <!-- placeholder -->
 
