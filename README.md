@@ -129,6 +129,7 @@ For beginning of Twee there were many docs and even an [interactive step-by-step
 ## Features
 - [x] **Full Compatibility of Twine Twee.** No "how to exit Vim" and "why my JSON malformed" anymore! Use any Twine editor, export as Twee, then integrate it to your project! Converter will be developed *soon*.
 - [x] **Twine flavoured.** From multi-layered variables and conditional branching to randomized systems and event listeners, BandTwine offers a feature set nearly as robust as Twine itself, fully capable of driving complex narrative logic.
+- [ ] **KDL Config.** Say good bye to the `meta` block and `{{{{[{[{}]}]}}}}`! This is still in Progress, but with KDL config... You will know that.
 - [x] **Optimized for Steam Engine.** Lightweight and Powerful. Supports embedded JavaScript inside Twee, call Vela APIs as usual.
 - [x] **Code less, more Fun.** One BandTwine project, run across Xiaomi & REDMI's bands and watches.
 - [x] **100% Traditional Human Coding.** Don't forget that I'm a [Vela developer](https://github.com/fywmjj/better-mb9p-ATRI).
