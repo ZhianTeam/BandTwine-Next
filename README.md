@@ -161,6 +161,11 @@ For beginning of Twee there were many docs and even an [interactive step-by-step
 Inherited from original project - **AGPLv3**.
 However, you **can include non-free assets**, whether they're commercial licensed artworks, storylines, scripts, etc. 
 
+> [!TIP]
+> Worried about the legal risks of using BandTwine? We've got you covered.
+> 
+> Check out the [NOTICE](/NOTICE) document to learn more.
+
 > [!WARNING]
 > Based on [original description](https://github.com/OrPudding/VelaOS_BandTwine/blob/main/README.md/#-%E5%BC%80%E6%BA%90%E5%8D%8F%E8%AE%AE) of [@OrPudding](https://github.com/OrPudding), this project seems to be **copyrighted** (or more precisely, **"non-free/proprietary project"**).
 >
