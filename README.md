@@ -6,6 +6,13 @@
 
 ---
 
+<div style="align: center;">
+    <b>We Speaking Your Language</b>
+    <a href="/readme/zh_CN.md">🇨🇳️</a> • <a href="/readme/zh_TW.md">🇭🇰️</a> • <a href="/readme/ja_JP.md">🇯🇵️</a>
+</div>
+
+---
+
 **BandTwine** is a 3party implementation/port of [Twine](https://twinery.org/), which is a groundbreaking interactive fiction engine. 
 
 We’ve brought its powerful, open-ended storytelling capabilities to resource-constrained Xiaomi wearables running HyperOS (NuttX) - affectionately dubbed the "Wrist Steam Engine" by [AstroBox](https://github.com/AstralSightStudios/AstroBox-NG) (lol).
