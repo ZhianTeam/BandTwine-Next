@@ -6,9 +6,9 @@
 
 ---
 
-<div style="align: center;">
-    <b>We Speaking Your Language</b>
-    <a href="/readme/zh_CN.md">🇨🇳️</a> • <a href="/readme/zh_TW.md">🇭🇰️</a> • <a href="/readme/ja_JP.md">🇯🇵️</a>
+<div align="center">
+    <h3>We Can Speak Your Language</h3>
+    <b>Select Your IME: </b><a href="/readme/zh_CN.md"><kbd>拼</kbd></a> • <a href="/readme/zh_TW.md"><kbd>注</kbd></a> • <a href="/readme/ja_JP.md"><kbd>あ</kbd></a>
 </div>
 
 ---
