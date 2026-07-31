@@ -87,6 +87,13 @@ Many GUIs can create Twees. Check this **quick comparison**:
 ```
 
 What about Twee?
+> [!IMPORTANT]
+> **Compatibility Note**
+>
+> BandTwine Next currently support **SugarCube** story format only. **Check before you export**!
+> 
+> If you're a Twine OG and wants more story formats support (e.g. Chapbook), **submit an issue OR leave a comment in BandBBS** to let us know!
+
 ```twee
 :: 起始
 <<tag "start">>
