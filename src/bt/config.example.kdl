@@ -1,0 +1,153 @@
+/*
+  Please rename this file from 'config.example.kdl' to 'config.kdl'
+  before you start editing.
+
+  # Config File for BandTwine Next
+  
+  Revision number: 6
+  License: AGPL-3.0
+  Copyleft (c) 2025-2026 ZhianTeam. All rights may not reserved.
+
+  This is BandTwine. A FLOSS interactive fiction engine.
+  BandTwine is a FLOSS Software distributed under AGPL-3.0 license. This software comes with ABSOLUTELY NO WARRANTY.
+  You are welcome to redistribute it under certain conditions. See the GNU Affero General Public License for more details.
+*/
+
+/* 
+  Metadata node.
+  
+  This node describes all informations about this fiction.
+  Fill in the real informations for identifying.
+*/
+meta {
+	// Your fiction name. Displays on "Start" and "About" page.
+	name "我的第一个互动故事"
+	// The description. Displays on "About" page.
+	description "这是一个示例互动故事"
+	// Author. Multiple authors supported.
+	// Display on "About" page.
+	author "张三" "李四" "王五" "赵六"
+	
+	// Version information.
+	ver {
+		id "1.0.0"	// Equals to 'versionName'
+		code 1		// Equals to 'versionCode'
+		immutable	// Enable this will hardcode the version information. 
+					// Recommended to enable for preventing version modification.
+		release "2026-08-01" // Release date of this version
+	}
+	
+	// Copyright information.
+	copyright {
+		copyrighted 			// Mark if this fiction is copyrighted
+		license "CC-BY-SA-4.0"	// License for your own works. Multiple licenses supported.
+		owner "主作者的名字"		// The owner of the work
+		containsNonFreeAssets	// Mark if this fiction contained proprietary assets
+	}
+}
+
+/* 
+  Payment configuration.
+  
+  If your fiction needs to paid for play, BandTwine has a Built-in payment management system.
+  Supported payment type:
+  - donate: show a payment prompt including QR Code but user can skip it, no network connection required
+  - rsa: VelaVerify™ by @OrPudding and @CheongSzesuen (MIT), network connection required
+    Only support "n67, o66, o67, n62, o62, n62s, o63, p62, o65, p65"
+  - key: Digital license by @JIFENG (MIT), no network connection required
+*/
+payment {
+	enable		// Enable the payment page
+	type "donate" 
+	price "3"	// CNY
+	
+	// NOTE: Don't forget to uncomment target type
+	
+	/- donate {
+		supported {
+			wechat	// WeChat Pay (微信支付)
+			alipay	// 支付宝
+		}
+		wechat {
+			link "https://wx.tenpay.com/..." // Paste the Link
+		}
+		alipay {
+			link "https://alipay.com/..." // Paste the Link
+		}
+	}
+	
+	// Docs: https://github.com/CheongSzesuen/VelaVerify/tree/main/RSA%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E6%96%B9%E6%B3%95
+	/- rsa {
+		// Must modify this to work
+		endpoint "https://..."
+		pk { "-----BEGIN PUBLIC KEY-----" "..." "-----END PUBLIC KEY-----" }
+		
+		// Only modify if your server customized them
+		/- bit 2048
+		/- crypto "pkcs" 
+		/- width 8
+	}
+	
+	// Docs: https://github.com/CheongSzesuen/VelaVerify/tree/main/%E5%8D%A1%E5%AF%86%E9%AA%8C%E8%AF%81%E6%96%B9%E6%B3%95-JIFENG
+	/- key {
+		show {
+			qrcode	// Show a QR Code™ for convenient
+			ascii	// Show Device ID as text
+		}
+	}
+	
+	// Customize payment page
+	/- title "我要圈钱"
+	/- description "line1" "line2" "line3" 
+	/- refresh 30
+}
+
+/*
+  Default Environment variables.
+  
+  This node defined environment variables from given keys and values (if exists)
+  at first launch.
+  
+  Multi namespaces are supported. For example you have 'story1.twee' and 'story2.twee',
+  BandTwine will apply 'namespace1' for 'story1', and 'namespace2' for 'story2'.
+  'namespace' points to the first Twee story file.
+  'global' applys across all stories.
+  
+  Key without value set its value to 'null'.
+  
+  Example:
+  env {
+	  namespace1 {
+		  variable1 "default value"
+		  variable2 42
+		  variable4
+	  }
+	
+	  namespace2 {
+		  setting1 "value"
+		  setting2
+	  }
+  }
+*/
+env {
+	namespace {
+		
+	}
+}
+
+
+/*
+  Properties node.
+  
+  This node sets some default settings at first launch. 
+  Can be changed in settings or by some conditions.
+  
+  Available subnodes:
+  - startNode: Override the start node's name. 
+               Defaults to 'start'.
+               Whatever, you must include this flag to mark this chapter as start:
+               <<tag "<startNode-value>">>
+*/
+properties {
+	startNode "start"	// <<tag "start">>
+}
