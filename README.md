@@ -90,7 +90,7 @@ What about Twee?
 > [!IMPORTANT]
 > **Compatibility Note**
 >
-> BandTwine Next currently support **SugarCube** story format only. **Check before you export**!
+> BandTwine Next currently support **SugarCube** story format only. **Check the "Default Story Format" before you export**!
 > 
 > If you're a Twine OG and wants more story formats support (e.g. Chapbook), **submit an issue OR leave a comment in BandBBS** to let us know!
 
@@ -103,11 +103,11 @@ What about Twee?
 
 :: 看看窗外
 你拉开窗帘，外面是一片宁静的森林，薄雾弥漫在树林间。
-[[回到房间中央|start]]
+[[回到房间中央|起始]]
 
 :: 看看桌子
 <<script 'prompt.showToast({ message: `当前钥匙状态：$gotKey`, duration: 1500 })'>>
-你走向桌子，上面放着一盏熄灭的油灯和一本合上的旧书。你决定[[拿起书本|拿起书本]][$gotKey to true]还是[[先不管它|start]]呢？
+你走向桌子，上面放着一盏熄灭的油灯和一本合上的旧书。你决定[[拿起书本|拿起书本]][$gotKey to true]还是[[先不管它|起始]]呢？
 
 :: 看看门
 <<script 'prompt.showToast({ message: `当前钥匙状态：$gotKey`, duration: 1500 })'>>
@@ -122,12 +122,13 @@ What about Twee?
 :: 拿起书本
 <<script 'prompt.showToast({ message: `钥匙找到了！当前钥匙状态：$gotKey`, duration: 1500 })'>>
 你拿起了书，发现书下压着一枚小小的黄铜钥匙。
+[[回到房间中央|起始]]
 
 :: 打开那扇门
 你将钥匙插入锁孔，轻轻一转，门开了。门外是通往自由的走廊。你的冒险，才刚刚开始……
 ```
 
-Simple. WYSIWYG. Embedded JavsScript. Vela API.
+Simple. WYSIWYG. Embedded JavaScript. Vela API.
 
 For beginners of Twee there were many docs and even an [interactive step-by-step guide](https://huanmeng692.github.io/Tutorial/) for you.[^1]
 
