@@ -6,10 +6,10 @@
 
 ---
 
-## Usagi
+## Usage
 By default it will be called by a wrapper. Also you can manually run it by executing:
 ```bash
-node $CWD/modules/cfgpackager/index.js <in.kdl> <out.bin>
+node $PWD/index.js <in.kdl> <out.bin>
 ```
 
 ## How Can BandTwine Next Read it?
@@ -22,7 +22,7 @@ See below:
 │ Magic         4B  Actually ASCII "BT  N  C"             │
 │ Format Ver    2B  uint16 BE                             │
 │ Section Count 1B  Sections                              │
-│ Body Length   4B  uint32 Length pf all sections         │
+│ Body Length   4B  uint32 BE Length pf all sections      │
 │ CRC-32        4B  for [Magic..Body]                     │
 │─────────────────────────────────────────────────────────│
 │ Sections      …[id(1) + len(4) + payload(len)] × N      │
