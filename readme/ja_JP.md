@@ -139,7 +139,7 @@ Twee 初心者のために、豊富なドキュメントと、参考になる [�
     <img src="/readme/badge/NotByAI/ja-JP/Written-By-Human-Not-By-AI-Badge-black.svg" alt="すべてのドキュメントは人間によって書かれています。" />
   </a>
   <a href="https://notbyai.fyi/" target="_blank">
-    <img src="/readme/badge/NotByAI/ja-JP/Developed-By-Human-Not-By-AI-Badge-black.svg" alt="すべてのコードは人間によって作成、テスト、レビューされています。" />
+    <img src="/readme/badge/NotByAI/en-US/Developed-By-Humans-Not-By-AI-Badge-black.svg" alt="すべてのコードは人間によって作成、テスト、レビューされています。" />
   </a>
 </p>
 
