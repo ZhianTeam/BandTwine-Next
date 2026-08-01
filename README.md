@@ -143,10 +143,10 @@ For beginners of Twee there were many docs and even an [interactive step-by-step
 - [x] **100% Traditional Human Coding.** Don't forget that I'm a [Vela developer](https://github.com/fywmjj/better-mb9p-ATRI).
 <p align="left">
   <a href="https://notbyai.fyi/" target="_blank">
-    <img src="https://raw.githubusercontent.com/GaoyiPlayOS/gaoyi-setup-wizard/main/assets/badges/svg/Written-By-a-Human-Not-By-AI-Badge-black.svg" alt="All documents are written by a human." />
+    <img src="/readme/badge/NotByAI/en-US/Written-By-Humans-Not-By-AI-Badge-black.svg" alt="All documents are written by a human." />
   </a>
   <a href="https://notbyai.fyi/" target="_blank">
-    <img src="https://raw.githubusercontent.com/GaoyiPlayOS/gaoyi-setup-wizard/main/assets/badges/svg/Developed-By-a-Human-Not-By-AI-Badge-black.svg" alt="All codes are written, tested and reviewed by a human." />
+    <img src="/readme/badge/NotByAI/en-US/Developed-By-Humans-Not-By-AI-Badge-black.svg" alt="All codes are written, tested and reviewed by a human." />
   </a>
 </p>
 
