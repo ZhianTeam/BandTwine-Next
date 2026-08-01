@@ -4,7 +4,7 @@
   "versionName": "2.0-alpha",
   "versionCode": 1785304611,
   "minPlatformVersion": 1000,
-  "icon": "/common/icon.png",
+  "icon": "/assets/icon/icon.png",
   "deviceTypeList": ["watch"],
   "features": [
     { "name": "system.app" },

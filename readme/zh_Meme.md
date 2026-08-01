@@ -1,4 +1,4 @@
-<img src="/src/common/icon.png" width="100px" align="left">
+<img src="/src/assets/icon/icon.png" width="100px" align="left">
 
 ### 结彩 Next
 

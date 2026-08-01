@@ -1,4 +1,4 @@
-<img src="/src/common/icon.png" width="100px" align="left">
+<img src="/src/assets/icon/icon.png" width="100px" align="left">
 
 ### <ruby>結<rt>ゆ</rt>彩<rt>あ</rt></ruby> Next
 
