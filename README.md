@@ -2,7 +2,7 @@
 
 ### BandTwine Next
 
-***Play Twine on your Mi Band.** But much better.*
+***Play Twine on your Mi Band / Watch.** But much better.*
 
 ---
 
