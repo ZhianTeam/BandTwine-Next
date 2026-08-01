@@ -1,5 +1,17 @@
-<!-- app.ux -->
+<!-- 
+  File: app.ux
+  Revision number: 1
+  License: AGPL-3.0
+  Copyleft (c) 2025-2026 ZhianTeam. All rights may not reserved.
+
+  This is BandTwine. A FLOSS interactive fiction engine.
+  BandTwine is a FLOSS Software distributed under AGPL-3.0 license. This software comes with ABSOLUTELY NO WARRANTY.
+  You are welcome to redistribute it under certain conditions. See the GNU Affero General Public License for more details.
+-->
+
 <script>
 export default {
-  }
+  deviceModel: device.model(),
+  deviceCodename: device.product()
+}
 </script>
