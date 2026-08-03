@@ -1,4 +1,4 @@
-<img src="/src/common/icon.png" width="100px" align="left">
+<img src="/src/assets/icon/icon.png" width="100px" align="left">
 
 ### `4B 44 4C 20 50 61 72 73 65 72 20 26 20 45 6E 63 6F 64 65 72 20 66 6F 72 20 42 54 20 4E 65 78 74`
 
@@ -13,7 +13,7 @@ node $PWD/index.js <in.kdl> <out.bin>
 ```
 
 ## How Can BandTwine Next Read it?
-By `proto.ArrayBuffer`. Fallbacks to `file.readArrayBuffer` (Vela, slow) when unavailable.
+By `file.readArrayBuffer` (Vela).
 
 ## Binary Structure
 See below:
