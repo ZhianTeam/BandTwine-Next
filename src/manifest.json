@@ -2,7 +2,7 @@
   "package": "org.zhian.bandtwine.demo",
   "name": "BandTwine Next",
   "versionName": "2.0-alpha",
-  "versionCode": 1785304611,
+  "versionCode": 1785304610,
   "minPlatformVersion": 1000,
   "icon": "/assets/icon/icon.png",
   "deviceTypeList": ["watch"],
@@ -34,7 +34,7 @@
     { "name": "hapjs.permission.DEVICE_INFO" }
   ],
   "config": {
-    "logLevel": "verbose",
+    "logLevel": "debug",
     "designWidth": "device-width"
   },
   "router": {
@@ -43,7 +43,6 @@
       "pages/index": {
         "conponment": "index"
       },
-      "pages/verify": {},
       "pages/game": {
         "conponment": "game"
       },
