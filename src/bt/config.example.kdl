@@ -57,9 +57,9 @@ meta {
   - key: Digital license by @JIFENG (MIT), no network connection required
 */
 payment {
-	enable		// Enable the payment page
+	/- enable		// Enable the payment page
 	type "donate" 
-	price "3"	// CNY
+	price 3	// CNY
 	
 	// NOTE: Don't forget to uncomment target type
 	
