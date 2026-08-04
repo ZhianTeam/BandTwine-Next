@@ -17,9 +17,78 @@ import { validate } from './src/validator.js';
 import { encode } from './src/encoder.js';
 import { KDLError } from './src/errors.js';
 
-function formatError(error, filename) {
+function translateValidationMessage(message, isError) {
+	const translations = {
+		"missing required field 'name'": "缺少必需字段 'name' 啦",
+		"must be a non-empty string": "必须是非空字符串哦",
+		"must be a string": "必须是字符串呢",
+		"node present but no authors specified": "节点存在但没有指定作者",
+		"missing 'ver' block": "缺少 'ver' 块；版本信息会丢失哦",
+		"missing required field 'id'": "缺少必需字段 'id'",
+		"does not follow semver format": "不符合 semver 格式 (X.Y.Z)",
+		"missing required field 'code'": "缺少必需字段 'code'",
+		"must be a non-negative integer": "必须是非负整数",
+		"expected a date string": "期望日期字符串格式 YYYY-MM-DD",
+		"is not a valid date": "不是有效的日期格式",
+		"is not a recognized SPDX identifier": "不是已知的 SPDX 许可证标识符",
+		"is set but no 'owner' is specified": "设置了但没有指定 'owner'",
+		"unknown field": "未知字段",
+		"will be ignored": "会被忽略",
+		"namespace node should not have arguments": "命名空间节点不应该有参数",
+		"namespace node should not have properties": "命名空间节点不应该有属性",
+		"empty namespace": "空命名空间",
+		"variable declaration must not have a children block": "变量声明不能有子块",
+		"variable declaration must not have properties": "变量声明不能有属性",
+		"variable must have at most one default value": "变量最多只能有一个默认值",
+		"default value must be string, number, or boolean": "默认值必须是字符串、数字或布尔值",
+		"no value specified": "没有指定值",
+		"must have exactly one value": "必须正好有一个值",
+		"missing required field 'startNode'": "缺少必需字段 'startNode'",
+		"Duplicate top-level node": "重复的顶级节点",
+		"Missing required top-level node 'meta'": "缺少必需的顶级节点 'meta'",
+		"Missing 'env' block": "缺少 'env' 块",
+		"no initial variables will be defined": "不会定义初始变量",
+		"Missing required top-level node 'properties'": "缺少必需的顶级节点 'properties'",
+		"Unknown top-level node": "未知的顶级节点"
+	};
+
+	let result = message;
+	for (const [en, zh] of Object.entries(translations)) {
+		if (message.includes(en)) {
+			result = message.replace(en, zh);
+			break;
+		}
+	}
+
+	return result;
+}
+
+function formatError(error, filename, logger) {
 	if (error instanceof KDLError) {
-		return `${filename}:${error.line}:${error.column}: ${error.message}`;
+		const location = `${filename}:${error.line}:${error.column}`;
+
+		if (!logger || logger.cLocale) {
+			return `${location}: ${error.message}`;
+		}
+
+		const zhMessages = {
+			'Expected value': '期望一个值，但是……',
+			'Unexpected token': '遇到了意料之外的符号',
+			'Unterminated string': '字符串没有闭合哦',
+			'Invalid number': '这个数字格式不太对呢',
+			'Missing closing brace': '少了一个右大括号 }',
+			'Duplicate node': '重复的节点啦'
+		};
+
+		let zhMsg = error.message;
+		for (const [enPattern, zhText] of Object.entries(zhMessages)) {
+			if (error.message.includes(enPattern)) {
+				zhMsg = error.message.replace(enPattern, zhText);
+				break;
+			}
+		}
+
+		return `${location}: ${zhMsg}`;
 	}
 	return error.message;
 }
@@ -50,13 +119,17 @@ export async function compileKDL(inputPath, outputPath = 'configs.bin', logger =
 
 		if (validationResult.warnings.length > 0) {
 			for (const warning of validationResult.warnings) {
-				log.warning(formatError(warning, inputPath));
+				const location = `${inputPath}:${warning.line}:${warning.column}`;
+				const msg = logger.cLocale ? warning.message : translateValidationMessage(warning.message, false);
+				log.warning(msg, location);
 			}
 		}
 
 		if (!validationResult.valid) {
 			for (const error of validationResult.errors) {
-				log.error(formatError(error, inputPath));
+				const location = `${inputPath}:${error.line}:${error.column}`;
+				const msg = logger.cLocale ? error.message : translateValidationMessage(error.message, true);
+				log.error(msg, location);
 			}
 			throw new Error('Validation failed with errors');
 		}
@@ -84,7 +157,9 @@ export async function compileKDL(inputPath, outputPath = 'configs.bin', logger =
 
 	} catch (error) {
 		if (error instanceof KDLError) {
-			log.error(formatError(error, inputPath));
+			const location = `${inputPath}:${error.line}:${error.column}`;
+			const msg = logger.cLocale ? error.message : translateValidationMessage(error.message, true);
+			log.error(msg, location);
 		} else {
 			log.error(error.message);
 		}
