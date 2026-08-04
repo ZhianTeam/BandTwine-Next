@@ -39,7 +39,10 @@ export async function compileTwee(inputDir, outputPath = 'story.bin', logger = n
 	}
 
 	if (tweeFiles.length === 0) {
-		throw new Error(`No .twee or .twee.txt files found in ${inputDir}`);
+		const errMsg = logger && !logger.cLocale
+			? `在 ${inputDir} 里找不到 .twee 或 .twee.txt 文件啦`
+			: `No .twee or .twee.txt files found in ${inputDir}`;
+		throw new Error(errMsg);
 	}
 
 	log.substep(`Found ${tweeFiles.length} Twee file(s)`);
@@ -90,11 +93,15 @@ export async function compileTwee(inputDir, outputPath = 'story.bin', logger = n
 	}
 
 	if (errors.length > 0) {
-		log.step('Validation errors found:');
+		const stepMsg = logger && !logger.cLocale
+			? '发现验证错误：'
+			: 'Validation errors found:';
+		log.step(stepMsg);
+
 		for (const err of errors) {
 			const location = `${err.filename}:${err.line}:${err.column}`;
-			const message = logger && logger.cLocale ? (err.cMessage || err.message) : err.message;
-			const hint = logger && logger.cLocale ? (err.cHint || err.hint) : err.hint;
+			const message = logger && !logger.cLocale ? err.message : (err.cMessage || err.message);
+			const hint = logger && !logger.cLocale ? err.hint : (err.cHint || err.hint);
 
 			if (logger && logger.errorWithContext) {
 				logger.errorWithContext(message, location, err.lineContent, err.column, hint);
@@ -102,13 +109,20 @@ export async function compileTwee(inputDir, outputPath = 'story.bin', logger = n
 				log.error(`${location}: ${message}`);
 			}
 		}
-		throw new Error('Twee validation failed');
+
+		const failMsg = logger && !logger.cLocale
+			? 'Twee 验证失败了……'
+			: 'Twee validation failed';
+		throw new Error(failMsg);
 	}
 
 	const passageNames = new Set();
 	for (const passage of allPassages) {
 		if (passageNames.has(passage.name)) {
-			warnings.push(`Duplicate passage name: "${passage.name}"`);
+			const warnMsg = logger && !logger.cLocale
+				? `重复的 passage 名称诶："${passage.name}"`
+				: `Duplicate passage name: "${passage.name}"`;
+			warnings.push(warnMsg);
 		}
 		passageNames.add(passage.name);
 	}
