@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /*
   File: usagi.js
-  Revision number: 1
+  Revision number: 4
   License: GPL-3.0
   Copyleft (c) 2025-2026 ZhianTeam. All rights may not reserved.
 
@@ -13,8 +13,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { execSync } from 'node:child_process';
+import { exec, execSync } from 'node:child_process';
 import crypto from 'node:crypto';
+import { promisify } from 'node:util';
 import Logger from './logger.js';
 import { compileKDL } from './kdlcomp/index.js';
 import { compileTwee } from './tweecomp/index.js';
@@ -25,6 +26,7 @@ const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 
 const VERSION = '0.1.0-alpha';
+const execAsync = promisify(exec);
 
 function showHelp() {
 	console.log(`Usagi - Compiler actually does things for BandTwine
@@ -186,6 +188,73 @@ async function compile(options) {
 		forceNerd: options.forceNerd
 	});
 
+	let buildDir = null;
+	let sigintCount = 0;
+	let lastSigintTime = 0;
+	let isShuttingDown = false;
+
+	const cleanup = () => {
+		if (buildDir && !options.noCleanup && fs.existsSync(buildDir)) {
+			try {
+				process.chdir(PROJECT_ROOT);
+				fs.rmSync(buildDir, { recursive: true, force: true });
+			} catch (err) {
+				// Ignore cleanup errors
+			}
+		}
+	};
+
+	const handleSigint = () => {
+		if (isShuttingDown) {
+			return;
+		}
+
+		const now = Date.now();
+		if (now - lastSigintTime < 1000) {
+			sigintCount++;
+		} else {
+			sigintCount = 1;
+		}
+		lastSigintTime = now;
+
+		if (sigintCount >= 3) {
+			const panicMsg = logger.cLocale
+				? '\nTriple SIGINT detected, aborting immediately... (╥﹏╥)\n'
+				: '\n连按三次了！我知道了，马上停下来！(╥﹏╥)\n';
+			process.stderr.write(panicMsg);
+			cleanup();
+			setImmediate(() => process.exit(130));
+			return;
+		}
+
+		isShuttingDown = true;
+
+		const stopMsg = logger.cLocale
+			? '\nYou want me to stop? Okay, I\'ll stop. (´・ω・`)\n'
+			: '\n你要让我停下来吗？嗯，那我就停下来吧。(´・ω・`)\n';
+		process.stderr.write(stopMsg);
+
+		if (logger.spinnerInterval) {
+			clearInterval(logger.spinnerInterval);
+			logger.spinnerInterval = null;
+		}
+
+		cleanup();
+		setImmediate(() => process.exit(0));
+	};
+
+	const handleSigterm = () => {
+		const termMsg = logger.cLocale
+			? '\nReceived termination signal, cleaning up... (｡•́︿•̀｡)\n'
+			: '\n收到终止信号了……正在清理中 (｡•́︿•̀｡)\n';
+		process.stderr.write(termMsg);
+		cleanup();
+		setImmediate(() => process.exit(143));
+	};
+
+	process.on('SIGINT', handleSigint);
+	process.on('SIGTERM', handleSigterm);
+
 	if (!options.mode) {
 		logger.error('Missing build mode: specify <build> or <release>');
 		logger.fail(null, 1);
@@ -237,7 +306,7 @@ async function compile(options) {
 	}
 
 	const buildHash = generateBuildHash(srcInnerPath, options);
-	const buildDir = options.customCwd || path.join(PROJECT_ROOT, '.bt-build', buildHash);
+	buildDir = options.customCwd || path.join(PROJECT_ROOT, '.bt-build', buildHash);
 
 	try {
 		logger.step('Creating temporary build directory...');
@@ -281,6 +350,19 @@ async function compile(options) {
 		const storyBinPath = path.join(buildSrcPath, 'bt', 'story.bin');
 		await compileTwee(btPath, storyBinPath, logger);
 
+		logger.step('Cleaning up source files in build directory...');
+		const kdlFiles = fs.readdirSync(path.join(buildSrcPath, 'bt')).filter(f => f.endsWith('.kdl'));
+		for (const kdlFile of kdlFiles) {
+			fs.unlinkSync(path.join(buildSrcPath, 'bt', kdlFile));
+			logger.substep(`Removed ${kdlFile}`);
+		}
+
+		const tweeFiles = fs.readdirSync(path.join(buildSrcPath, 'bt')).filter(f => f.endsWith('.twee') || f.endsWith('.twee.txt'));
+		for (const tweeFile of tweeFiles) {
+			fs.unlinkSync(path.join(buildSrcPath, 'bt', tweeFile));
+			logger.substep(`Removed ${tweeFile}`);
+		}
+
 		logger.info('Processing assets...');
 		logger.updateSpinner(null, 50);
 		const assetsPath = path.join(srcInnerPath, 'assets');
@@ -316,11 +398,16 @@ async function compile(options) {
 		logger.substep(`Executing: ${fullCmd}`);
 
 		try {
-			const result = execSync(fullCmd, {
+			const { stdout: result } = await execAsync(fullCmd, {
 				stdio: 'pipe',
 				cwd: buildDir,
-				encoding: 'utf8'
+				encoding: 'utf8',
+				killSignal: 'SIGTERM'
 			});
+
+			if (isShuttingDown) {
+				return;
+			}
 
 			if (result.includes('❌')) {
 				throw new Error('aiot-toolkit reported errors');
@@ -332,9 +419,20 @@ async function compile(options) {
 
 			logger.updateSpinner(null, 85);
 		} catch (err) {
+			if (isShuttingDown) {
+				return;
+			}
+
+			if (err.signal === 'SIGINT' || err.signal === 'SIGTERM') {
+				return;
+			}
+
 			const output = err.stdout || err.stderr || '';
 			if (output.includes('❌') || err.message.includes('aiot-toolkit reported errors')) {
-				logger.error('aiot-toolkit 编译失败了……检查一下输出吧');
+				const failMsg = logger.cLocale
+					? 'aiot-toolkit compilation failed'
+					: 'aiot-toolkit 编译失败了……检查一下输出吧';
+				logger.error(failMsg);
 				if (options.verbose) {
 					console.error(output);
 				}
@@ -372,6 +470,10 @@ async function compile(options) {
 			logger.substep(`Build directory preserved: ${buildDir}`);
 		}
 
+		if (isShuttingDown) {
+			return 0;
+		}
+
 		const successMsg = logger.cLocale
 			? 'Compilation Succeeded.'
 			: '编译成功！';
@@ -382,9 +484,16 @@ async function compile(options) {
 			logger.success(successMsg);
 		}
 
+		process.removeListener('SIGINT', handleSigint);
+		process.removeListener('SIGTERM', handleSigterm);
+
 		return 0;
 
 	} catch (error) {
+		if (isShuttingDown) {
+			return 0;
+		}
+
 		if (options.silent) {
 			logger.stopSpinner(null, false);
 		}
@@ -400,14 +509,12 @@ async function compile(options) {
 			: '编译中止。哼～';
 		logger.fail(failMsg, 1);
 
-		if (!options.noCleanup && fs.existsSync(buildDir)) {
-			try {
-				process.chdir(PROJECT_ROOT);
-				fs.rmSync(buildDir, { recursive: true, force: true });
-			} catch {}
-		}
+		cleanup();
 
-		return 1;
+		process.removeListener('SIGINT', handleSigint);
+		process.removeListener('SIGTERM', handleSigterm);
+
+		process.exit(1);
 	}
 }
 
