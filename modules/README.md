@@ -45,7 +45,7 @@ Usagi automatically runs, and generates fully-optmized `.rpk` installation packa
 
 ## Commandlines
 > [!TIP]
-> You can also check them inside your terminal by run `node run usagi` without any args.
+> You can also check them inside your terminal by run `npm run usagi` without any args.
 
 ```bash
 Usagi - Compiler actually does things for BandTwine
