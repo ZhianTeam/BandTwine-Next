@@ -75,8 +75,9 @@ Flags:
 ```
 
 ## Future...
-- Nerd Font icon? (Although I know most of developers' terminal are not Nerd one, fallbacks ready)
-- How about becoming the world's first compiler with feelings? The kind that pouts playfully at you whenever you trigger a warning (,,>ヮ<,,)
+- [ ] Nerd Font icon? (Although I know most of developers' terminal are not Nerd one, fallbacks ready)
+- [ ] How about becoming the world's first compiler with feelings? The kind that pouts playfully at you whenever you trigger a warning (,,>ヮ<,,)
+- [ ] Catch error from `aiot-toolkit` and exit with non-zero
 
 ## License
 [GPLv3](/modules/LICENSE). Different from project's AGPLv3.
