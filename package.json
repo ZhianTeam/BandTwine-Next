@@ -13,10 +13,12 @@
     "node": ">=20.0.0"
   },
   "scripts": {
+    "usagi": "./modules/usagi.js",
+
     "start": "aiot server --watch --open-nuttx",
-    "build": "aiot build --enable-jsc --enable-protobuf",
+    "build": "./modules/usagi.js --path . build -v",
     "lint": "eslint --format codeframe --fix --ext .ux,.js src/",
-    "release": "aiot release --enable-image-png8 --enable-protobuf --enable-jsc",
+    "release": "./modules/usagi.js --path . release -v",
     "watch": "aiot watch --open-nuttx"
   },
   "lint-staged": {
