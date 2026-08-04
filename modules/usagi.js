@@ -202,14 +202,21 @@ async function compile(options) {
 		process.exit(1);
 	}
 
-	const srcPath = path.resolve(options.path, 'src');
+	const srcPath = path.resolve(options.path);
 	if (!fs.existsSync(srcPath)) {
 		logger.error(`Source directory not found: ${srcPath}`);
 		logger.fail(null, 1);
 		process.exit(1);
 	}
 
-	const btPath = path.join(srcPath, 'bt');
+	const srcInnerPath = path.join(srcPath, 'src');
+	if (!fs.existsSync(srcInnerPath)) {
+		logger.error(`Source directory not found: ${srcInnerPath}`);
+		logger.fail(null, 1);
+		process.exit(1);
+	}
+
+	const btPath = path.join(srcInnerPath, 'bt');
 	if (!fs.existsSync(btPath)) {
 		logger.error(`BandTwine source directory not found: ${btPath}`);
 		logger.fail(null, 1);
@@ -225,17 +232,23 @@ async function compile(options) {
 
 	logger.info(logger.t('compiling') + ' BandTwine...');
 
-	const buildHash = generateBuildHash(srcPath, options);
+	if (options.silent) {
+		logger.startSpinner(logger.t('compiling'));
+	}
+
+	const buildHash = generateBuildHash(srcInnerPath, options);
 	const buildDir = options.customCwd || path.join(PROJECT_ROOT, '.bt-build', buildHash);
 
 	try {
 		logger.step('Creating temporary build directory...');
+		logger.updateSpinner(null, 5);
 		fs.mkdirSync(buildDir, { recursive: true });
 		logger.substep(`Created ${buildDir}`);
 
 		process.chdir(buildDir);
 
 		logger.step('Setting up build environment...');
+		logger.updateSpinner(null, 10);
 
 		const linkTargets = ['node_modules', 'package.json', 'package-lock.json', 'sign'];
 		for (const target of linkTargets) {
@@ -249,8 +262,9 @@ async function compile(options) {
 		}
 
 		logger.step('Copying source files...');
+		logger.updateSpinner(null, 15);
 		const buildSrcPath = path.join(buildDir, 'src');
-		fs.cpSync(srcPath, buildSrcPath, { recursive: true });
+		fs.cpSync(srcInnerPath, buildSrcPath, { recursive: true });
 		logger.substep(`Copied to ${buildSrcPath}`);
 
 		if (!options.skipCheck) {
@@ -258,15 +272,18 @@ async function compile(options) {
 		}
 
 		logger.info('Compiling configuration...');
+		logger.updateSpinner(null, 20);
 		const configBinPath = path.join(buildSrcPath, 'bt', 'configs.bin');
 		await compileKDL(configPath, configBinPath, logger);
 
 		logger.info('Compiling story files...');
+		logger.updateSpinner(null, 35);
 		const storyBinPath = path.join(buildSrcPath, 'bt', 'story.bin');
 		await compileTwee(btPath, storyBinPath, logger);
 
 		logger.info('Processing assets...');
-		const assetsPath = path.join(srcPath, 'assets');
+		logger.updateSpinner(null, 50);
+		const assetsPath = path.join(srcInnerPath, 'assets');
 		const buildAssetsPath = path.join(buildSrcPath, 'assets');
 
 		if (fs.existsSync(assetsPath)) {
@@ -276,6 +293,7 @@ async function compile(options) {
 		}
 
 		logger.info('Calling aiot-toolkit...');
+		logger.updateSpinner(null, 60);
 		const aiotCmd = aiotPath.endsWith('.js') ? `node "${aiotPath}"` : aiotPath;
 		const aiotArgs = [];
 
@@ -298,16 +316,36 @@ async function compile(options) {
 		logger.substep(`Executing: ${fullCmd}`);
 
 		try {
-			execSync(fullCmd, {
-				stdio: options.verbose ? 'inherit' : 'pipe',
-				cwd: buildDir
+			const result = execSync(fullCmd, {
+				stdio: 'pipe',
+				cwd: buildDir,
+				encoding: 'utf8'
 			});
+
+			if (result.includes('❌')) {
+				throw new Error('aiot-toolkit reported errors');
+			}
+
+			if (options.verbose && result) {
+				console.log(result);
+			}
+
+			logger.updateSpinner(null, 85);
 		} catch (err) {
-			logger.error('aiot-toolkit failed');
+			const output = err.stdout || err.stderr || '';
+			if (output.includes('❌') || err.message.includes('aiot-toolkit reported errors')) {
+				logger.error('aiot-toolkit 编译失败了……检查一下输出吧');
+				if (options.verbose) {
+					console.error(output);
+				}
+			} else {
+				logger.error('aiot-toolkit failed');
+			}
 			throw err;
 		}
 
 		logger.info('Moving artifacts...');
+		logger.updateSpinner(null, 90);
 		const distPath = path.resolve(PROJECT_ROOT, options.output);
 		fs.mkdirSync(distPath, { recursive: true });
 
@@ -326,6 +364,7 @@ async function compile(options) {
 
 		if (!options.noCleanup) {
 			logger.step('Cleaning up...');
+			logger.updateSpinner(null, 95);
 			process.chdir(PROJECT_ROOT);
 			fs.rmSync(buildDir, { recursive: true, force: true });
 			logger.substep('Temporary directory removed');
@@ -336,11 +375,20 @@ async function compile(options) {
 		const successMsg = logger.cLocale
 			? 'Compilation Succeeded.'
 			: '编译成功！';
-		logger.success(successMsg);
+
+		if (options.silent) {
+			logger.stopSpinner(successMsg, true);
+		} else {
+			logger.success(successMsg);
+		}
 
 		return 0;
 
 	} catch (error) {
+		if (options.silent) {
+			logger.stopSpinner(null, false);
+		}
+
 		logger.error(error.message);
 
 		if (options.verbose && error.stack) {
