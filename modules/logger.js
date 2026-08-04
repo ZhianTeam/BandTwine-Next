@@ -1,6 +1,6 @@
 /*
   File: logger.js
-  Revision number: 1
+  Revision number: 3
   License: GPL-3.0
   Copyleft (c) 2025-2026 ZhianTeam. All rights may not reserved.
 
@@ -57,8 +57,8 @@ const CUTE_ZH = {
 const C_LOCALE = {
 	compiling: 'Compiling',
 	done: 'Done',
-	error: 'Error',
-	warning: 'Warning',
+	error: 'error',
+	warning: 'warning',
 	note: 'Note',
 	failed: '× Compilation Failed. Stop.',
 	success: '✓ Compilation Succeeded.',
@@ -266,46 +266,65 @@ class Logger {
 
 	startSpinner(text) {
 		if (!this.silent) return;
-		if (!this.isTTY) return;
 
 		this.spinnerIndex = 0;
 		this.spinnerText = text;
 		this.spinnerPercent = 0;
-		process.stdout.write(`${this.spinner[0]} ${text} (0%)\r`);
+		this.lastLoggedPercent = -1;
 
-		this.spinnerInterval = setInterval(() => {
-			this.spinnerIndex = (this.spinnerIndex + 1) % this.spinner.length;
-			const percentStr = Math.round(this.spinnerPercent).toString().padStart(2);
-			process.stdout.write(`${this.spinner[this.spinnerIndex]} ${this.spinnerText} (${percentStr}%)\r`);
-		}, 80);
+		if (this.isTTY) {
+			process.stdout.write(`${this.spinner[0]} ${text} (0%)\r`);
+
+			this.spinnerInterval = setInterval(() => {
+				this.spinnerIndex = (this.spinnerIndex + 1) % this.spinner.length;
+				const percentStr = Math.round(this.spinnerPercent).toString().padStart(2);
+				process.stdout.write(`${this.spinner[this.spinnerIndex]} ${this.spinnerText} (${percentStr}%)\r`);
+			}, 80);
+		} else {
+			console.log(`${text} (0%)...`);
+			this.lastLoggedPercent = 0;
+		}
 	}
 
 	updateSpinner(text, percent) {
 		if (!this.silent) return;
-		if (!this.isTTY) return;
 
 		if (text) this.spinnerText = text;
-		this.spinnerPercent = percent;
+		if (percent !== undefined) this.spinnerPercent = percent;
+
+		if (!this.isTTY) {
+			const roundedPercent = Math.round(percent);
+			if (roundedPercent >= this.lastLoggedPercent + 10) {
+				console.log(`${this.spinnerText} (${roundedPercent}%)...`);
+				this.lastLoggedPercent = roundedPercent;
+			}
+		}
 	}
 
 	stopSpinner(text = null, success = true) {
 		if (!this.silent) return;
-		if (!this.isTTY) return;
 
 		if (this.spinnerInterval) {
 			clearInterval(this.spinnerInterval);
 			this.spinnerInterval = null;
 		}
 
-		const symbol = success
-			? (this.hasNerdFont ? '󰄬' : '✓')
-			: (this.hasNerdFont ? '󰅖' : '×');
-		const color = success ? ANSI.greenBold : ANSI.redBold;
+		if (this.isTTY) {
+			const symbol = success
+				? (this.hasNerdFont ? '󰄬' : '✓')
+				: (this.hasNerdFont ? '󰅖' : '×');
+			const color = success ? ANSI.greenBold : ANSI.redBold;
 
-		if (text) {
-			process.stdout.write(`${this.color(symbol, color)} ${text}${' '.repeat(20)}\n`);
+			if (text) {
+				process.stdout.write(`${this.color(symbol, color)} ${text}${' '.repeat(20)}\n`);
+			} else {
+				process.stdout.write('\n');
+			}
 		} else {
-			process.stdout.write('\n');
+			const symbol = success ? '✓' : '×';
+			if (text) {
+				console.log(`${symbol} ${text}`);
+			}
 		}
 	}
 
