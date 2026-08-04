@@ -1,0 +1,26 @@
+:: Start Example Story
+
+This is a minimal test story for BandTwine Next.
+
+:: start [start]
+
+Welcome to the example story!
+
+This is the starting passage. <<set $visited = true>>
+
+[[Continue to next passage->second]]
+
+:: second
+
+You are now in the second passage.
+
+<<if $visited>>You have visited the start passage.<</if>>
+
+[[Go back->start]]
+[[End story->end]]
+
+:: end
+
+This is the end of the story.
+
+Thanks for playing!
