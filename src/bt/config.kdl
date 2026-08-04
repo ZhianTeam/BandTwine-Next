@@ -1,7 +1,4 @@
 /*
-  Please rename this file from 'config.example.kdl' to 'config.kdl'
-  before you start editing.
-
   # Config File for BandTwine Next
   
   Revision number: 7
@@ -80,11 +77,11 @@ payment {
 	/- rsa {
 		// Must modify this to work
 		endpoint "https://..."
-		pk { "-----BEGIN PUBLIC KEY-----" "..." "-----END PUBLIC KEY-----" }
-		
+		pk "-----BEGIN PUBLIC KEY-----" "..." "-----END PUBLIC KEY-----"
+
 		// Only modify if your server customized them
 		/- bit 2048
-		/- crypto "pkcs" 
+		/- crypto "pkcs"
 		/- width 8
 	}
 	
