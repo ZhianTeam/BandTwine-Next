@@ -1,5 +1,6 @@
 {
   "name": "bandtwine-ng",
+  "type": "module",
   "version": "2.0.0-alpha",
   "description": "Twine UNOFFICIAL Port for Xiaomi Smart Watch/Band.",
   "author": [
