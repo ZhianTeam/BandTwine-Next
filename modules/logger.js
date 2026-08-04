@@ -29,31 +29,51 @@ const ANSI = {
 	redBold: '\x1b[1;31m'
 };
 
-const NERD_SPINNER = ['󰪞', '󰪟', '󰪠', '󰪡', '󰪢', '󰪣', '󰪤', '󰪥'];
+const NERD_SPINNER = ['', '', '', '', '', ''];
 const BRAILLE_SPINNER = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
 
 const CUTE_ZH = {
 	compiling: '正在编译',
 	done: '完成啦',
-	error: '错误',
-	warning: '警告',
+	error: 'error',
+	warning: 'warning',
 	note: '才…才不会告诉你',
 	failed: '× 编译中止。哼～',
 	success: '✓ 编译成功！',
 	bracket_missing: '诶…？这里是不是漏掉了一个 \'>\' 呀？右边空空的，逻辑要流出来啦……',
-	bracket_hint: '在 Twee 故事中，<< 和 >> 是成对出现的哦。'
+	bracket_hint: '在 Twee 故事中，<< 和 >> 是成对出现的哦。',
+	unknown_node: '咦？遇到了不认识的节点诶……',
+	unknown_node_hint: '这个节点不在 KDL schema 里面哦，可能是拼写错误，或者还没有实现呢～',
+	invalid_value: '这个值……好像不太对劲？',
+	invalid_value_hint: '检查一下类型、格式或者取值范围吧！',
+	file_not_found: '找不到文件啦！是不是路径写错了呀？',
+	parse_error: '解析失败了……文件格式可能有问题哦',
+	validation_error: '验证没通过呢……',
+	missing_required: '必需的字段不见了！',
+	invalid_spdx: '这个许可证标识符……SPDX 数据库里没有诶',
+	invalid_spdx_hint: '去 https://spdx.org/licenses/ 查一查正确的标识符吧～'
 };
 
 const C_LOCALE = {
 	compiling: 'Compiling',
 	done: 'Done',
-	error: 'error',
-	warning: 'warning',
+	error: 'Error',
+	warning: 'Warning',
 	note: 'Note',
 	failed: '× Compilation Failed. Stop.',
 	success: '✓ Compilation Succeeded.',
 	bracket_missing: 'Bracket isn\'t enclosed: expected \'>\' but got a line break',
-	bracket_hint: 'In Twee stories, a `<<` is usually paired with `>>` in a single line.'
+	bracket_hint: 'In Twee stories, a `<<` is usually paired with `>>` in a single line.',
+	unknown_node: 'Unknown node encountered',
+	unknown_node_hint: 'This node is not in the KDL schema. Check for typos or unimplemented features.',
+	invalid_value: 'Invalid value',
+	invalid_value_hint: 'Check the type, format, or value range.',
+	file_not_found: 'File not found',
+	parse_error: 'Parse error',
+	validation_error: 'Validation failed',
+	missing_required: 'Required field missing',
+	invalid_spdx: 'Invalid SPDX license identifier',
+	invalid_spdx_hint: 'Check https://spdx.org/licenses/ for valid identifiers.'
 };
 
 class Logger {
@@ -188,7 +208,7 @@ class Logger {
 	warning(text, location = null) {
 		if (this.silent) return;
 
-		const prefix = this.color('::', ANSI.blueBold);
+		const prefix = this.color('::', ANSI.yellowBold);
 		const label = this.color(`${this.locale.warning}:`, ANSI.yellowBold);
 
 		if (location) {
@@ -199,7 +219,7 @@ class Logger {
 	}
 
 	error(text, location = null) {
-		const prefix = this.color('::', ANSI.blueBold);
+		const prefix = this.color('::', ANSI.redBold);
 		const label = this.color(`${this.locale.error}:`, ANSI.redBold);
 
 		if (location) {
@@ -249,11 +269,14 @@ class Logger {
 		if (!this.isTTY) return;
 
 		this.spinnerIndex = 0;
+		this.spinnerText = text;
+		this.spinnerPercent = 0;
 		process.stdout.write(`${this.spinner[0]} ${text} (0%)\r`);
 
 		this.spinnerInterval = setInterval(() => {
 			this.spinnerIndex = (this.spinnerIndex + 1) % this.spinner.length;
-			process.stdout.write(`${this.spinner[this.spinnerIndex]} ${text} (0%)\r`);
+			const percentStr = Math.round(this.spinnerPercent).toString().padStart(2);
+			process.stdout.write(`${this.spinner[this.spinnerIndex]} ${this.spinnerText} (${percentStr}%)\r`);
 		}, 80);
 	}
 
@@ -261,8 +284,8 @@ class Logger {
 		if (!this.silent) return;
 		if (!this.isTTY) return;
 
-		const percentStr = Math.round(percent).toString().padStart(2);
-		process.stdout.write(`${this.spinner[this.spinnerIndex]} ${text} (${percentStr}%)\r`);
+		if (text) this.spinnerText = text;
+		this.spinnerPercent = percent;
 	}
 
 	stopSpinner(text = null, success = true) {
