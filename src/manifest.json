@@ -41,22 +41,22 @@
     "entry": "pages/index",
     "pages": {
       "pages/index": {
-        "conponment": "index"
+        "component": "index"
       },
       "pages/game": {
-        "conponment": "game"
+        "component": "game"
       },
       "pages/checkpoint": {
-        "conponment": "checkpoint"
+        "component": "checkpoint"
       },
       "pages/settings": {
-        "conponment": "settings"
+        "component": "settings"
       },
       "pages/about": {
-        "conponment": "about"
+        "component": "about"
       },
       "pages/dev": {
-        "conponment": "dev"
+        "component": "dev"
       }
     }
   }
