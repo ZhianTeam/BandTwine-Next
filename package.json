@@ -14,6 +14,7 @@
   },
   "scripts": {
     "usagi": "./modules/usagi.js",
+    "neg": "./conv/neg.js",
 
     "start": "aiot server --watch --open-nuttx",
     "build": "./modules/usagi.js --path . build -v",
