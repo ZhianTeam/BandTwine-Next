@@ -10,6 +10,8 @@
 -->
 
 <script>
+const device = require("@system.device");
+
 export default {
   deviceModel: device.model(),
   deviceCodename: device.product()
