@@ -128,12 +128,11 @@
 [^1]: 特別感謝 [@huanmeng692](https://github.com/huanmeng692/) 製作了如此 amazing 的引導教學！
 
 ## 功能特色
-- [x] **全面相容 Twine Twee。** 再也不用糾結「如何退出 Vim」和「為什麼我的 JSON 格式又報錯了」！隨意使用任何 Twine 編輯器，匯出為 Twee 檔案，即可直接整合到你的專案中！轉換器也將在 *近期* 推出。
-- [x] **原汁原味的 Twine 體驗。** 從多層變數、條件分支到隨機系統和事件監聽器，BandTwine 提供了幾乎與 Twine 一樣強大的功能集，完全有能力驅動複雜的敘事邏輯。
-- [ ] **KDL 設定。** 徹底告別 `meta` 區塊和那一堆令人抓狂的括號 `{{{{[{[{}]}]}}}}`！此功能仍在開發中，但一旦支援了 KDL 設定…… 你懂的。
-- [x] **專為「蒸汽機」優化。** 輕量且強大。支援在 Twee 中嵌入 JavaScript，並能照常呼叫 Vela API。
-- [x] **少寫程式碼，多享樂趣。** 一個 BandTwine 專案，即可在小米及紅米 (REDMI) 的手環和手錶上跨裝置執行。
-- [x] **100% 純手工人類程式碼。** 別忘了，我可是一位貨真價實的 [Vela 開發者](https://github.com/fywmjj/better-mb9p-ATRI)。
+- [x] **全面相容 Twine Twee。** 再也不用糾結「如何退出 Vim」或「為什麼我的 JSON 又跳語法錯誤」！隨心所欲使用任何 Twine 編輯器，匯出為 Twee 格式，即可輕鬆整合至你的專案！搭配 [NeG Converter](/conv/QUICKSTART.md) 使用，更能實現從舊版 BandTwine JSON 的無縫遷移。
+- [x] **優雅的 KDL 設定。** 徹底告別繁瑣的 `metadata` 屬性區塊與令人頭大的 `{{{{[{[{}]}]}}}}` 巢狀結構！KDL 設定對人類極為友善，不僅支援透過 `/-` 進行節點級註解，還擁有結構化的多參數節點設計，更能直接編譯為二進位 TLV 格式，實現零執行階段開銷。
+- [x] **專為「蒸汽機」深度最佳化。** 輕量敏捷，功能強大。支援在 Twee 中直接內嵌 JavaScript，各類 Vela API 依然任你調遣。
+- [x] **少寫程式碼，多享樂趣。** 只需一份 BandTwine 專案，即可輕鬆跨裝置執行於小米與 REDMI 的各大手環及手錶裝置。
+- [x] **100% 傳統純手工人類編程。** 可別忘了，我本身就是一名 [Vela 開發者](https://github.com/fywmjj/better-mb9p-ATRI)。
 <p align="left">
   <a href="https://notbyai.fyi/" target="_blank">
     <img src="/readme/badge/NotByAI/zh-TW/Written-By-Human-Not-By-AI-Badge-black.svg" alt="所有說明文件均由人類編寫。" />
