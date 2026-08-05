@@ -237,15 +237,15 @@ NeG automatically detects and migrates:
   Output: ./src/bt/config.kdl and ./src/bt/story.twee
 
 Arguments:
-  -q    --quiet     Suppress non-error logs during migration
-  -v  --verbose     Show parsing details and warnings for dirty inputs
-  -s   --strict     Treat all syntax warnings as fatal errors
-  -c  --comment     Parse JSONC (JSON with Comments) inputs
-  -f    --force     Resolve variable collisions via last-in-wins strategy
-  -o --overwrite    Overwrite existing output files without prompting
-  -p --preserve     Preserve original folder (\`bandtwine_src/\`) and files
-  -V  --version     Show version of NeG
-     --c-locale     Force GNU POSIX C.UTF-8 locale
+  -q     --quiet     Suppress non-error logs during migration
+  -v   --verbose     Show parsing details and warnings for dirty inputs
+  -s    --strict     Treat all syntax warnings as fatal errors
+  -c   --comment     Parse JSONC (JSON with Comments) inputs
+  -f     --force     Resolve variable collisions via last-in-wins strategy
+  -o --overwrite     Overwrite existing output files without prompting
+  -p  --preserve     Preserve original folder (\`bandtwine_src/\`) and files
+  -V   --version     Show version of NeG
+      --c-locale     Force GNU POSIX C.UTF-8 locale
 `);
 }
 
