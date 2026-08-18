@@ -27,6 +27,8 @@ codename {                              // See `## 2.`
             min 1.0.96                  // minimal RELEASE firmware version (not include beta)
             latest 3.1.175              // latest firmware version (including beta)
         }
+        api 2                           // API Level: 1~4
+        platform 1200                   // `platformVersion`
         status "active"                 // "active" || "eol" (still selling but seems no firmware update anymore) || "discontinued"
     }
     js {
