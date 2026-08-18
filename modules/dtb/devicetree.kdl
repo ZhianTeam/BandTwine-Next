@@ -22,9 +22,9 @@ m67 {
 		class "Smart Band"
 	}
 	mcu {
-		manufacturer null
-		chip null
-		series null
+		manufacturer "BES"
+		chip "2700"
+		series "IBP"
 	}
 	screen {
 		reported "rect"
@@ -33,15 +33,15 @@ m67 {
 	}
 	system {
 		developer "Xiaomi"
-		class null
-		version null
+		class "HyperOS"
+		version 1.0
 		firmware {
 			min null
 			latest null
 		}
 		api 1
-		platform null
-		status null
+		platform 1000
+		status "eol"
 	}
 	js {
 		engine "qjs"
@@ -141,9 +141,9 @@ n66 {
 		class "Smart Band"
 	}
 	mcu {
-		manufacturer null
-		chip null
-		series null
+		manufacturer "BES"
+		chip "2700"
+		series "IMP"
 	}
 	screen {
 		reported "pill-shaped"
@@ -152,15 +152,15 @@ n66 {
 	}
 	system {
 		developer "Xiaomi"
-		class null
-		version null
+		class "HyperOS"
+		version 2.0
 		firmware {
 			min null
 			latest null
 		}
 		api 2
-		platform null
-		status null
+		platform 1000
+		status "active"
 	}
 	js {
 		engine "qjs"
@@ -427,9 +427,9 @@ o66 {
 		class "Smart Band"
 	}
 	mcu {
-		manufacturer null
-		chip null
-		series null
+		manufacturer "BES"
+		chip "2700"
+		series "IMP"
 	}
 	screen {
 		reported "pill-shaped"
@@ -438,15 +438,15 @@ o66 {
 	}
 	system {
 		developer "Xiaomi"
-		class null
-		version null
+		class "HyperOS"
+		version 3.0
 		firmware {
 			min null
 			latest null
 		}
 		api 4
 		platform null
-		status null
+		status "active"
 	}
 	js {
 		engine "qjs"
@@ -561,26 +561,26 @@ p67 {
 		class "Smart Band"
 	}
 	mcu {
-		manufacturer null
-		chip null
-		series null
+		manufacturer "BES"
+		chip "2700"
+		series "IMP"
 	}
 	screen {
-		reported null
+		reported "rect"
 		w 336
 		h 480
 	}
 	system {
 		developer "Xiaomi"
-		class null
-		version null
+		class "HyperOS"
+		version 3.0
 		firmware {
 			min null
 			latest null
 		}
-		api null
+		api 3
 		platform null
-		status null
+		status "active"
 	}
 	js {
 		engine null
