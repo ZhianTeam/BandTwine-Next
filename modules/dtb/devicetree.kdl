@@ -1,0 +1,2388 @@
+/*
+  File: devicetree.kdl
+  Revision number: 1
+  License: GPL-3.0
+  Copyleft (c) 2025-2026 ZhianTeam. All rights may not reserved.
+
+  The devices descriptor file for Usagi.
+  BandTwine is a FLOSS Software distributed under AGPL-3.0 license.
+  This software comes with ABSOLUTELY NO WARRANTY.
+  You are welcome to redistribute it under certain conditions.
+  See the GNU Affero General Public License for more details.
+
+  Each root node is a device codename. Unknown values are null.
+*/
+
+// Xiaomi Smart Bands
+m67 {
+	pretty "Xiaomi Smart Band 8 Pro"
+	type "band"
+	manufacturer {
+		brand "Xiaomi"
+		class "Smart Band"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported "rect"
+		w 336
+		h 480
+	}
+	system {
+		developer "Xiaomi"
+		class null
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api 1
+		platform null
+		status null
+	}
+	js {
+		engine "qjs"
+		ability null
+		language "generic" "es5" "es6"
+	}
+	api {
+		app {
+			getInfo
+			terminate
+			loadLibrary
+		}
+		configuration {
+			getLocale
+		}
+		device {
+			getInfo
+			getDeviceId
+			getSerial
+			getTotalStorage
+			getAvailableStorage
+		}
+		router {
+			push
+			replace
+			back
+			clear
+			getLength
+			getState
+			getPages
+		}
+		file {
+			move
+			copy
+			list
+			get
+			delete
+			writeText
+			writeArrayBuffer
+			readText
+			readArrayBuffer
+			access
+			mkdir
+			rmdir
+		}
+		storage {
+			get
+			set
+			clear
+			delete
+		}
+		interconnect {
+			instance
+			getReadyState
+			diagnosis
+			send
+			onmessage
+			onopen
+			onclose
+			onerror
+		}
+		audio {
+			play
+			pause
+			stop
+			getPlayState
+		}
+		prompt {
+			showToast
+		}
+		brightness {
+			getValue
+			setValue
+			getMode
+			setMode
+			setKeepScreenOn
+		}
+		vibrator {
+			vibrate
+		}
+		volume {
+			getMediaValue
+			setMediaValue
+			onMediaValueChanged
+		}
+		zip {
+			decompress
+		}
+	}
+}
+
+n66 {
+	pretty "Xiaomi Smart Band 9"
+	type "band"
+	manufacturer {
+		brand "Xiaomi"
+		class "Smart Band"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported "pill-shaped"
+		w 192
+		h 490
+	}
+	system {
+		developer "Xiaomi"
+		class null
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api 2
+		platform null
+		status null
+	}
+	js {
+		engine "qjs"
+		ability null
+		language "generic" "es5" "es6"
+	}
+	api {
+		app {
+			getInfo
+			terminate
+			loadLibrary
+		}
+		configuration {
+			getLocale
+		}
+		device {
+			getInfo
+			getDeviceId
+			getSerial
+			getTotalStorage
+			getAvailableStorage
+		}
+		router {
+			push
+			replace
+			back
+			clear
+			getLength
+			getState
+			getPages
+		}
+		file {
+			move
+			copy
+			list
+			get
+			delete
+			writeText
+			writeArrayBuffer
+			readText
+			readArrayBuffer
+			access
+			mkdir
+			rmdir
+		}
+		storage {
+			get
+			set
+			clear
+			delete
+		}
+		interconnect {
+			instance
+			getReadyState
+			diagnosis
+			send
+			onmessage
+			onopen
+			onclose
+			onerror
+		}
+		audio {
+			play
+			pause
+			stop
+			getPlayState
+		}
+		prompt {
+			showToast
+		}
+		brightness {
+			getValue
+			setValue
+			getMode
+			setMode
+			setKeepScreenOn
+		}
+		sensor {
+			subscribeAccelerometer
+			unsubscribeAccelerometer
+		}
+		vibrator {
+			vibrate
+		}
+		volume {
+			getMediaValue
+			setMediaValue
+			onMediaValueChanged
+		}
+		zip {
+			decompress
+		}
+	}
+}
+
+n67 {
+	pretty "Xiaomi Smart Band 9 Pro"
+	type "band"
+	manufacturer {
+		brand "Xiaomi"
+		class "Smart Band"
+	}
+	mcu {
+		manufacturer "BES"
+		chip "2700"
+		series "IMP"
+	}
+	screen {
+		reported "rect"
+		w 336
+		h 480
+	}
+	system {
+		developer "Xiaomi"
+		class "HyperOS"
+		version 2.0
+		firmware {
+			min "1.0.96"
+			latest "3.1.175"
+		}
+		api 2
+		platform 1200
+		status "active"
+	}
+	js {
+		engine "qjs"
+		ability "protobuf" "compiled"
+		language "generic" "es5" "es6"
+	}
+	api {
+		app {
+			getInfo
+			terminate
+			loadLibrary
+		}
+		configuration {
+			getLocale
+		}
+		device {
+			getInfo
+			getDeviceId
+			getSerial
+			getTotalStorage
+			getAvailableStorage
+		}
+		router {
+			push
+			replace
+			back
+			clear
+			getLength
+			getState
+			getPages
+		}
+		file {
+			move
+			copy
+			list
+			get
+			delete
+			writeText
+			writeArrayBuffer
+			readText
+			readArrayBuffer
+			access
+			mkdir
+			rmdir
+		}
+		storage {
+			get
+			set
+			clear
+			delete
+		}
+		interconnect {
+			instance
+			getReadyState
+			diagnosis
+			send
+			onmessage
+			onopen
+			onclose
+			onerror
+		}
+		audio {
+			play
+			pause
+			stop
+			getPlayState
+		}
+		prompt {
+			showToast
+		}
+		brightness {
+			getValue
+			setValue
+			getMode
+			setMode
+			setKeepScreenOn
+		}
+		sensor {
+			subscribePressure
+			unsubscribePressure
+			subscribeAccelerometer
+			unsubscribeAccelerometer
+		}
+		vibrator {
+			vibrate
+		}
+		volume {
+			getMediaValue
+			setMediaValue
+			onMediaValueChanged
+		}
+		zip {
+			decompress
+		}
+	}
+}
+
+n69 {
+	pretty "Xiaomi Smart Band 9 Active"
+	type "band"
+	manufacturer {
+		brand "Xiaomi"
+		class "Smart Band"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported null
+		w 172
+		h 320
+	}
+	system {
+		developer "Xiaomi"
+		class null
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api null
+		platform null
+		status null
+	}
+	js {
+		engine null
+		ability null
+		language null
+	}
+	api {
+	}
+}
+
+o66 {
+	pretty "Xiaomi Smart Band 10"
+	type "band"
+	manufacturer {
+		brand "Xiaomi"
+		class "Smart Band"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported "pill-shaped"
+		w 212
+		h 520
+	}
+	system {
+		developer "Xiaomi"
+		class null
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api 4
+		platform null
+		status null
+	}
+	js {
+		engine "qjs"
+		ability null
+		language "generic" "es5" "es6"
+	}
+	api {
+		app {
+			getInfo
+			terminate
+			loadLibrary
+			canIUse
+		}
+		configuration {
+			getLocale
+		}
+		device {
+			getInfo
+			getDeviceId
+			getSerial
+			getTotalStorage
+			getAvailableStorage
+		}
+		router {
+			push
+			replace
+			back
+			clear
+			getLength
+			getState
+			getPages
+		}
+		file {
+			move
+			copy
+			list
+			get
+			delete
+			writeText
+			writeArrayBuffer
+			readText
+			readArrayBuffer
+			access
+			mkdir
+			rmdir
+		}
+		storage {
+			get
+			set
+			clear
+			delete
+		}
+		interconnect {
+			instance
+			getReadyState
+			diagnosis
+			send
+			onmessage
+			onopen
+			onclose
+			onerror
+		}
+		audio {
+			play
+			pause
+			stop
+			getPlayState
+		}
+		prompt {
+			showToast
+		}
+		battery {
+			getStatus
+		}
+		brightness {
+			getValue
+			setValue
+			getMode
+			setMode
+			setKeepScreenOn
+		}
+		event {
+			publish
+			subscribe
+			unsubscribe
+		}
+		sensor {
+			subscribePressure
+			unsubscribePressure
+			subscribeAccelerometer
+			unsubscribeAccelerometer
+		}
+		vibrator {
+			vibrate
+		}
+		volume {
+			getMediaValue
+			setMediaValue
+			onMediaValueChanged
+		}
+		zip {
+			decompress
+		}
+	}
+}
+
+p67 {
+	pretty "Xiaomi Smart Band 10 Pro"
+	type "band"
+	manufacturer {
+		brand "Xiaomi"
+		class "Smart Band"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported null
+		w 336
+		h 480
+	}
+	system {
+		developer "Xiaomi"
+		class null
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api null
+		platform null
+		status null
+	}
+	js {
+		engine null
+		ability null
+		language null
+	}
+	api {
+	}
+}
+
+// Xiaomi Smart Watches
+k63 {
+	pretty "Xiaomi Watch Color 2 / Xiaomi Watch S1 Active"
+	type "watch"
+	manufacturer {
+		brand "Xiaomi"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported null
+		w 466
+		h 466
+	}
+	system {
+		developer "Xiaomi"
+		class null
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api null
+		platform null
+		status null
+	}
+	js {
+		engine null
+		ability null
+		language null
+	}
+	api {
+	}
+}
+
+k62 {
+	pretty "Xiaomi Watch S1"
+	type "watch"
+	manufacturer {
+		brand "Xiaomi"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported null
+		w 466
+		h 466
+	}
+	system {
+		developer "Xiaomi"
+		class null
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api null
+		platform null
+		status null
+	}
+	js {
+		engine null
+		ability null
+		language null
+	}
+	api {
+	}
+}
+
+l61 {
+	pretty "Xiaomi Watch S1 Pro"
+	type "watch"
+	manufacturer {
+		brand "Xiaomi"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported "circle"
+		w 480
+		h 480
+	}
+	system {
+		developer "Xiaomi"
+		class null
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api 1
+		platform null
+		status null
+	}
+	js {
+		engine "qjs"
+		ability null
+		language "generic" "es5" "es6"
+	}
+	api {
+		app {
+			getInfo
+			terminate
+			loadLibrary
+		}
+		configuration {
+			getLocale
+		}
+		device {
+			getInfo
+			getDeviceId
+			getSerial
+			getTotalStorage
+			getAvailableStorage
+		}
+		router {
+			push
+			replace
+			back
+			clear
+			getLength
+			getState
+			getPages
+		}
+		file {
+			move
+			copy
+			list
+			get
+			delete
+			writeText
+			writeArrayBuffer
+			readText
+			readArrayBuffer
+			access
+			mkdir
+			rmdir
+		}
+		storage {
+			get
+			set
+			clear
+			delete
+		}
+		fetch {
+			fetch
+		}
+		interconnect {
+			instance
+			getReadyState
+			diagnosis
+			send
+			onmessage
+			onopen
+			onclose
+			onerror
+		}
+		request {
+			download
+			onDownloadComplete
+		}
+		audio {
+			play
+			pause
+			stop
+			getPlayState
+		}
+		prompt {
+			showToast
+		}
+		brightness {
+			getValue
+			setValue
+			getMode
+			setMode
+			setKeepScreenOn
+		}
+		network {
+			getType
+			subscribe
+			unsubscribe
+		}
+		vibrator {
+			vibrate
+		}
+		volume {
+			getMediaValue
+			setMediaValue
+			onMediaValueChanged
+		}
+		zip {
+			decompress
+		}
+	}
+}
+
+m62 {
+	pretty "Xiaomi Watch S2"
+	type "watch"
+	manufacturer {
+		brand "Xiaomi"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported null
+		w 466
+		h 466
+	}
+	system {
+		developer "Xiaomi"
+		class null
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api null
+		platform null
+		status null
+	}
+	js {
+		engine null
+		ability null
+		language null
+	}
+	api {
+	}
+}
+
+n62 {
+	pretty "Xiaomi Watch S3"
+	type "watch"
+	manufacturer {
+		brand "Xiaomi"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported "circle"
+		w 466
+		h 466
+	}
+	system {
+		developer "Xiaomi"
+		class "HyperOS"
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api 3
+		platform null
+		status null
+	}
+	js {
+		engine "qjs"
+		ability null
+		language "generic" "es5" "es6"
+	}
+	api {
+		app {
+			getInfo
+			terminate
+			loadLibrary
+			canIUse
+		}
+		configuration {
+			getLocale
+		}
+		device {
+			getInfo
+			getDeviceId
+			getSerial
+			getTotalStorage
+			getAvailableStorage
+		}
+		router {
+			push
+			replace
+			back
+			clear
+			getLength
+			getState
+			getPages
+		}
+		file {
+			move
+			copy
+			list
+			get
+			delete
+			writeText
+			writeArrayBuffer
+			readText
+			readArrayBuffer
+			access
+			mkdir
+			rmdir
+		}
+		storage {
+			get
+			set
+			clear
+			delete
+		}
+		fetch {
+			fetch
+		}
+		interconnect {
+			instance
+			getReadyState
+			diagnosis
+			send
+			onmessage
+			onopen
+			onclose
+			onerror
+		}
+		request {
+			download
+			onDownloadComplete
+		}
+		uploadtask {
+			uploadFile
+			abort
+			onProgressUpdate
+			offProgressUpdate
+		}
+		audio {
+			play
+			pause
+			stop
+			getPlayState
+		}
+		prompt {
+			showToast
+		}
+		crypto {
+			hashDigest
+			hmacDigest
+			sign
+			verify
+			encrypt
+			decrypt
+			btoa
+			atob
+		}
+		brightness {
+			getValue
+			setValue
+			getMode
+			setMode
+			setKeepScreenOn
+		}
+		geolocation {
+			getLocation
+			subscribe
+			unsubscribe
+		}
+		network {
+			getType
+			subscribe
+			unsubscribe
+		}
+		sensor {
+			subscribePressure
+			unsubscribePressure
+		}
+		vibrator {
+			vibrate
+		}
+		volume {
+			getMediaValue
+			setMediaValue
+			onMediaValueChanged
+		}
+		zip {
+			decompress
+		}
+	}
+}
+
+o62 {
+	pretty "Xiaomi Watch S4"
+	type "watch"
+	manufacturer {
+		brand "Xiaomi"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported "circle"
+		w 466
+		h 466
+	}
+	system {
+		developer "Xiaomi"
+		class "HyperOS"
+		version 2.0
+		firmware {
+			min null
+			latest null
+		}
+		api 4
+		platform null
+		status null
+	}
+	js {
+		engine "qjs"
+		ability null
+		language "generic" "es5" "es6"
+	}
+	api {
+		app {
+			getInfo
+			terminate
+			loadLibrary
+			canIUse
+		}
+		configuration {
+			getLocale
+		}
+		device {
+			getInfo
+			getDeviceId
+			getSerial
+			getTotalStorage
+			getAvailableStorage
+		}
+		router {
+			push
+			replace
+			back
+			clear
+			getLength
+			getState
+			getPages
+		}
+		file {
+			move
+			copy
+			list
+			get
+			delete
+			writeText
+			writeArrayBuffer
+			readText
+			readArrayBuffer
+			access
+			mkdir
+			rmdir
+		}
+		storage {
+			get
+			set
+			clear
+			delete
+		}
+		fetch {
+			fetch
+		}
+		interconnect {
+			instance
+			getReadyState
+			diagnosis
+			send
+			onmessage
+			onopen
+			onclose
+			onerror
+		}
+		request {
+			download
+			onDownloadComplete
+		}
+		uploadtask {
+			uploadFile
+			abort
+			onProgressUpdate
+			offProgressUpdate
+		}
+		audio {
+			play
+			pause
+			stop
+			getPlayState
+		}
+		prompt {
+			showToast
+		}
+		crypto {
+			hashDigest
+			hmacDigest
+			sign
+			verify
+			encrypt
+			decrypt
+			btoa
+			atob
+		}
+		battery {
+			getStatus
+		}
+		brightness {
+			getValue
+			setValue
+			getMode
+			setMode
+			setKeepScreenOn
+		}
+		event {
+			publish
+			subscribe
+			unsubscribe
+		}
+		geolocation {
+			getLocation
+			subscribe
+			unsubscribe
+		}
+		network {
+			getType
+			subscribe
+			unsubscribe
+		}
+		sensor {
+			subscribePressure
+			unsubscribePressure
+			subscribeCompass
+			unsubscribeCompass
+		}
+		vibrator {
+			vibrate
+		}
+		volume {
+			getMediaValue
+			setMediaValue
+			onMediaValueChanged
+		}
+		zip {
+			decompress
+		}
+	}
+}
+
+n62s {
+	pretty "Xiaomi Watch S4 Sport"
+	type "watch"
+	manufacturer {
+		brand "Xiaomi"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported "circle"
+		w 466
+		h 466
+	}
+	system {
+		developer "Xiaomi"
+		class null
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api null
+		platform null
+		status null
+	}
+	js {
+		engine "qjs"
+		ability null
+		language "generic" "es5" "es6"
+	}
+	api {
+		app {
+			getInfo
+			terminate
+			loadLibrary
+		}
+		configuration {
+			getLocale
+		}
+		device {
+			getInfo
+			getDeviceId
+			getSerial
+			getTotalStorage
+			getAvailableStorage
+		}
+		router {
+			push
+			replace
+			back
+			clear
+			getLength
+			getState
+			getPages
+		}
+		file {
+			move
+			copy
+			list
+			get
+			delete
+			writeText
+			writeArrayBuffer
+			readText
+			readArrayBuffer
+			access
+			mkdir
+			rmdir
+		}
+		storage {
+			get
+			set
+			clear
+			delete
+		}
+		interconnect {
+			instance
+			getReadyState
+			diagnosis
+			send
+			onmessage
+			onopen
+			onclose
+			onerror
+		}
+		audio {
+			play
+			pause
+			stop
+			getPlayState
+		}
+		prompt {
+			showToast
+		}
+		brightness {
+			getValue
+			setValue
+			getMode
+			setMode
+			setKeepScreenOn
+		}
+		volume {
+			getMediaValue
+			setMediaValue
+			onMediaValueChanged
+		}
+		zip {
+			decompress
+		}
+	}
+}
+
+o63 {
+	pretty "Xiaomi Watch S4 41mm"
+	type "watch"
+	manufacturer {
+		brand "Xiaomi"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported null
+		w 466
+		h 466
+	}
+	system {
+		developer "Xiaomi"
+		class "HyperOS"
+		version 3.0
+		firmware {
+			min null
+			latest null
+		}
+		api null
+		platform null
+		status null
+	}
+	js {
+		engine null
+		ability null
+		language null
+	}
+	api {
+	}
+}
+
+n60 {
+	pretty "Xiaomi Watch H1"
+	type "watch"
+	manufacturer {
+		brand "Xiaomi"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported "circle"
+		w 466
+		h 466
+	}
+	system {
+		developer "Xiaomi"
+		class null
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api 1
+		platform null
+		status null
+	}
+	js {
+		engine "qjs"
+		ability null
+		language "generic" "es5" "es6"
+	}
+	api {
+		app {
+			getInfo
+			terminate
+			loadLibrary
+		}
+		configuration {
+			getLocale
+		}
+		device {
+			getInfo
+			getDeviceId
+			getSerial
+			getTotalStorage
+			getAvailableStorage
+		}
+		router {
+			push
+			replace
+			back
+			clear
+			getLength
+			getState
+			getPages
+		}
+		file {
+			move
+			copy
+			list
+			get
+			delete
+			writeText
+			writeArrayBuffer
+			readText
+			readArrayBuffer
+			access
+			mkdir
+			rmdir
+		}
+		storage {
+			get
+			set
+			clear
+			delete
+		}
+		interconnect {
+			instance
+			getReadyState
+			diagnosis
+			send
+			onmessage
+			onopen
+			onclose
+			onerror
+		}
+		audio {
+			play
+			pause
+			stop
+			getPlayState
+		}
+		prompt {
+			showToast
+		}
+		brightness {
+			getValue
+			setValue
+			getMode
+			setMode
+			setKeepScreenOn
+		}
+		vibrator {
+			vibrate
+		}
+		volume {
+			getMediaValue
+			setMediaValue
+			onMediaValueChanged
+		}
+		zip {
+			decompress
+		}
+	}
+}
+
+n60e {
+	pretty "Xiaomi Watch H1 E"
+	type "watch"
+	manufacturer {
+		brand "Xiaomi"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported null
+		w 466
+		h 466
+	}
+	system {
+		developer "Xiaomi"
+		class null
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api null
+		platform null
+		status null
+	}
+	js {
+		engine null
+		ability null
+		language null
+	}
+	api {
+	}
+}
+
+p62 {
+	pretty "Xiaomi Watch S5"
+	type "watch"
+	manufacturer {
+		brand "Xiaomi"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported "circle"
+		w 480
+		h 480
+	}
+	system {
+		developer "Xiaomi"
+		class null
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api 4
+		platform null
+		status null
+	}
+	js {
+		engine "qjs"
+		ability null
+		language "generic" "es5" "es6"
+	}
+	api {
+		app {
+			getInfo
+			terminate
+			loadLibrary
+			canIUse
+		}
+		configuration {
+			getLocale
+		}
+		device {
+			getInfo
+			getDeviceId
+			getSerial
+			getTotalStorage
+			getAvailableStorage
+		}
+		router {
+			push
+			replace
+			back
+			clear
+			getLength
+			getState
+			getPages
+		}
+		file {
+			move
+			copy
+			list
+			get
+			delete
+			writeText
+			writeArrayBuffer
+			readText
+			readArrayBuffer
+			access
+			mkdir
+			rmdir
+		}
+		storage {
+			get
+			set
+			clear
+			delete
+		}
+		fetch {
+			fetch
+		}
+		interconnect {
+			instance
+			getReadyState
+			diagnosis
+			send
+			onmessage
+			onopen
+			onclose
+			onerror
+		}
+		request {
+			download
+			onDownloadComplete
+		}
+		uploadtask {
+			uploadFile
+			abort
+			onProgressUpdate
+			offProgressUpdate
+		}
+		audio {
+			play
+			pause
+			stop
+			getPlayState
+		}
+		prompt {
+			showToast
+		}
+		crypto {
+			hashDigest
+			hmacDigest
+			sign
+			verify
+			encrypt
+			decrypt
+			btoa
+			atob
+		}
+		battery {
+			getStatus
+		}
+		bluetooth {
+			createScanner
+			createGattClientDevice
+			stopBLEScan
+			getScanState
+			subscribeBLEDeviceFind
+			unsubscribeBLEDeviceFind
+			close
+			connect
+			disconnect
+			getServices
+			readCharacteristicValue
+			readDescriptorValue
+			writeCharacteristicValue
+			writeDescriptorValue
+			setBLEMtuSize
+			setNotifyCharacteristicChanged
+			onBLECharacteristicChange
+			onBLEConnectionStateChange
+			getDeviceName
+			getRssiValue
+		}
+		brightness {
+			getValue
+			setValue
+			getMode
+			setMode
+			setKeepScreenOn
+		}
+		event {
+			publish
+			subscribe
+			unsubscribe
+		}
+		geolocation {
+			getLocation
+			subscribe
+			unsubscribe
+		}
+		network {
+			getType
+			subscribe
+			unsubscribe
+		}
+		record {
+			start
+			stop
+			onframerecorded
+		}
+		sensor {
+			subscribePressure
+			unsubscribePressure
+			subscribeAccelerometer
+			unsubscribeAccelerometer
+			subscribeCompass
+			unsubscribeCompass
+		}
+		vibrator {
+			vibrate
+			start
+			stop
+			getSystemDefaultMode
+		}
+		volume {
+			getMediaValue
+			setMediaValue
+			onMediaValueChanged
+		}
+		zip {
+			decompress
+		}
+	}
+}
+
+// REDMI Smart Watches
+k65 {
+	pretty "Redmi Watch 2"
+	type "watch"
+	manufacturer {
+		brand "REDMI"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported null
+		w 320
+		h 360
+	}
+	system {
+		developer "Xiaomi"
+		class null
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api null
+		platform null
+		status null
+	}
+	js {
+		engine null
+		ability null
+		language null
+	}
+	api {
+	}
+}
+
+k65b {
+	pretty "Redmi Watch 2 Lite"
+	type "watch"
+	manufacturer {
+		brand "REDMI"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported null
+		w 320
+		h 360
+	}
+	system {
+		developer "Xiaomi"
+		class null
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api null
+		platform null
+		status null
+	}
+	js {
+		engine null
+		ability null
+		language null
+	}
+	api {
+	}
+}
+
+m65 {
+	pretty "Redmi Watch 3"
+	type "watch"
+	manufacturer {
+		brand "REDMI"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported null
+		w 390
+		h 450
+	}
+	system {
+		developer "Xiaomi"
+		class null
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api null
+		platform null
+		status null
+	}
+	js {
+		engine null
+		ability null
+		language null
+	}
+	api {
+	}
+}
+
+m65a {
+	pretty "Redmi Watch 3 Active / Redmi Watch 3 Youth Edition"
+	type "watch"
+	manufacturer {
+		brand "REDMI"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported null
+		w 240
+		h 280
+	}
+	system {
+		developer "Xiaomi"
+		class null
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api null
+		platform null
+		status null
+	}
+	js {
+		engine null
+		ability null
+		language null
+	}
+	api {
+	}
+}
+
+n65 {
+	pretty "Redmi Watch 4"
+	type "watch"
+	manufacturer {
+		brand "REDMI"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported null
+		w 390
+		h 450
+	}
+	system {
+		developer "Xiaomi"
+		class "HyperOS"
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api 1
+		platform null
+		status null
+	}
+	js {
+		engine "qjs"
+		ability null
+		language "generic" "es5" "es6"
+	}
+	api {
+		app {
+			getInfo
+			terminate
+			loadLibrary
+		}
+		configuration {
+			getLocale
+		}
+		device {
+			getInfo
+			getDeviceId
+			getSerial
+			getTotalStorage
+			getAvailableStorage
+		}
+		router {
+			push
+			replace
+			back
+			clear
+			getLength
+			getState
+			getPages
+		}
+		file {
+			move
+			copy
+			list
+			get
+			delete
+			writeText
+			writeArrayBuffer
+			readText
+			readArrayBuffer
+			access
+			mkdir
+			rmdir
+		}
+		storage {
+			get
+			set
+			clear
+			delete
+		}
+		interconnect {
+			instance
+			getReadyState
+			diagnosis
+			send
+			onmessage
+			onopen
+			onclose
+			onerror
+		}
+		audio {
+			play
+			pause
+			stop
+			getPlayState
+		}
+		prompt {
+			showToast
+		}
+		brightness {
+			getValue
+			setValue
+			getMode
+			setMode
+			setKeepScreenOn
+		}
+		vibrator {
+			vibrate
+		}
+		volume {
+			getMediaValue
+			setMediaValue
+			onMediaValueChanged
+		}
+		zip {
+			decompress
+		}
+	}
+}
+
+o65 {
+	pretty "REDMI Watch 5"
+	type "watch"
+	manufacturer {
+		brand "REDMI"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported "rect"
+		w 432
+		h 514
+	}
+	system {
+		developer "Xiaomi"
+		class "HyperOS"
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api 4
+		platform null
+		status null
+	}
+	js {
+		engine "qjs"
+		ability null
+		language "generic" "es5" "es6"
+	}
+	api {
+		app {
+			getInfo
+			terminate
+			loadLibrary
+			canIUse
+		}
+		configuration {
+			getLocale
+		}
+		device {
+			getInfo
+			getDeviceId
+			getSerial
+			getTotalStorage
+			getAvailableStorage
+		}
+		router {
+			push
+			replace
+			back
+			clear
+			getLength
+			getState
+			getPages
+		}
+		file {
+			move
+			copy
+			list
+			get
+			delete
+			writeText
+			writeArrayBuffer
+			readText
+			readArrayBuffer
+			access
+			mkdir
+			rmdir
+		}
+		storage {
+			get
+			set
+			clear
+			delete
+		}
+		fetch {
+			fetch
+		}
+		interconnect {
+			instance
+			getReadyState
+			diagnosis
+			send
+			onmessage
+			onopen
+			onclose
+			onerror
+		}
+		request {
+			download
+			onDownloadComplete
+		}
+		uploadtask {
+			uploadFile
+			abort
+			onProgressUpdate
+			offProgressUpdate
+		}
+		audio {
+			play
+			pause
+			stop
+			getPlayState
+		}
+		prompt {
+			showToast
+		}
+		crypto {
+			hashDigest
+			hmacDigest
+			sign
+			verify
+			encrypt
+			decrypt
+			btoa
+			atob
+		}
+		battery {
+			getStatus
+		}
+		brightness {
+			getValue
+			setValue
+			getMode
+			setMode
+			setKeepScreenOn
+		}
+		event {
+			publish
+			subscribe
+			unsubscribe
+		}
+		geolocation {
+			getLocation
+			subscribe
+			unsubscribe
+		}
+		network {
+			getType
+			subscribe
+			unsubscribe
+		}
+		sensor {
+			subscribeCompass
+			unsubscribeCompass
+		}
+		vibrator {
+			vibrate
+		}
+		volume {
+			getMediaValue
+			setMediaValue
+			onMediaValueChanged
+		}
+		zip {
+			decompress
+		}
+	}
+}
+
+n65a {
+	pretty "Redmi Watch 5 Active"
+	type "watch"
+	manufacturer {
+		brand "REDMI"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported null
+		w 320
+		h 385
+	}
+	system {
+		developer "Xiaomi"
+		class "HyperOS"
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api null
+		platform null
+		status null
+	}
+	js {
+		engine null
+		ability null
+		language null
+	}
+	api {
+	}
+}
+
+n65b {
+	pretty "REDMI Watch 5 Lite"
+	type "watch"
+	manufacturer {
+		brand "REDMI"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported null
+		w 410
+		h 502
+	}
+	system {
+		developer "Xiaomi"
+		class "HyperOS"
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api null
+		platform null
+		status null
+	}
+	js {
+		engine null
+		ability null
+		language null
+	}
+	api {
+	}
+}
+
+n65c {
+	pretty "Redmi Watch Move"
+	type "watch"
+	manufacturer {
+		brand "REDMI"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported null
+		w 390
+		h 450
+	}
+	system {
+		developer "Xiaomi"
+		class "HyperOS"
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api null
+		platform null
+		status null
+	}
+	js {
+		engine null
+		ability null
+		language null
+	}
+	api {
+	}
+}
+
+p65 {
+	pretty "REDMI Watch 6"
+	type "watch"
+	manufacturer {
+		brand "REDMI"
+		class "Smart Watch"
+	}
+	mcu {
+		manufacturer null
+		chip null
+		series null
+	}
+	screen {
+		reported null
+		w 432
+		h 514
+	}
+	system {
+		developer "Xiaomi"
+		class "HyperOS"
+		version null
+		firmware {
+			min null
+			latest null
+		}
+		api 4
+		platform null
+		status null
+	}
+	js {
+		engine "qjs"
+		ability null
+		language "generic" "es5" "es6"
+	}
+	api {
+		app {
+			getInfo
+			terminate
+			loadLibrary
+			canIUse
+		}
+		configuration {
+			getLocale
+		}
+		device {
+			getInfo
+			getDeviceId
+			getSerial
+			getTotalStorage
+			getAvailableStorage
+		}
+		router {
+			push
+			replace
+			back
+			clear
+			getLength
+			getState
+			getPages
+		}
+		file {
+			move
+			copy
+			list
+			get
+			delete
+			writeText
+			writeArrayBuffer
+			readText
+			readArrayBuffer
+			access
+			mkdir
+			rmdir
+		}
+		storage {
+			get
+			set
+			clear
+			delete
+		}
+		fetch {
+			fetch
+		}
+		interconnect {
+			instance
+			getReadyState
+			diagnosis
+			send
+			onmessage
+			onopen
+			onclose
+			onerror
+		}
+		request {
+			download
+			onDownloadComplete
+		}
+		uploadtask {
+			uploadFile
+			abort
+			onProgressUpdate
+			offProgressUpdate
+		}
+		audio {
+			play
+			pause
+			stop
+			getPlayState
+		}
+		prompt {
+			showToast
+		}
+		crypto {
+			hashDigest
+			hmacDigest
+			sign
+			verify
+			encrypt
+			decrypt
+			btoa
+			atob
+		}
+		battery {
+			getStatus
+		}
+		brightness {
+			getValue
+			setValue
+			getMode
+			setMode
+			setKeepScreenOn
+		}
+		event {
+			publish
+			subscribe
+			unsubscribe
+		}
+		geolocation {
+			getLocation
+			subscribe
+			unsubscribe
+		}
+		network {
+			getType
+			subscribe
+			unsubscribe
+		}
+		sensor {
+			subscribeCompass
+			unsubscribeCompass
+		}
+		vibrator {
+			vibrate
+		}
+		volume {
+			getMediaValue
+			setMediaValue
+			onMediaValueChanged
+		}
+		zip {
+			decompress
+		}
+	}
+}
