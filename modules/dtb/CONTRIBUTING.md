@@ -15,6 +15,7 @@ codename {                              // See `## 2.`
     }
     screen {
         reported "rect"                 // result `screenShape` of `device.getInfo()`
+                                        // rect || circle || pill-shaped (API v3+)
         w 336                           // `screenWidth`
         h 480                           // `screenHeight`
     }
