@@ -74,10 +74,20 @@ Flags:
  -d          --no-cleanup      Do not cleanup the temporary directory for debugging propose
 ```
 
-## Future...
+## To-do
 - [x] Nerd Font icon? (Although I know most of developers' terminal are not Nerd one, fallbacks ready)
-- [ ] How about becoming the world's first compiler with feelings? The kind that pouts playfully at you whenever you trigger a warning (,,>ヮ<,,)
 - [x] Catch error from `aiot-toolkit` and exit with non-zero
+- [ ] Fix BTNC header generation so config binaries always start with the expected magic bytes
+- [ ] Align the KDL schema with `config.kdl`, including nested release, license, and payment fields
+- [ ] Validate and encode payment configuration instead of discarding it as an unknown root node
+- [ ] Compile Twee passages and macros instead of storing raw UTF-8 content unchanged
+- [ ] Cover the complete BTSC header and story body with CRC32
+- [ ] Add runtime BTNC/BTSC decoders and load `configs.bin` and `story.bin` end to end
+- [ ] Wire devicetree data into `--device`, capability checks, and device-specific JSC/PBF defaults
+- [ ] Implement the documented `--interactive`, `--strict`, and `--skip-check` behavior
+- [ ] Cross-check `startNode` and story links against compiled passages
+- [ ] Add parser and encoder unit tests plus an E2E RPK build test
+- [ ] How about becoming the world's first compiler with feelings? The kind that pouts playfully at you whenever you trigger a warning (,,>ヮ<,,)
 
 ## License
 [GPLv3](/modules/LICENSE). Different from project's AGPLv3.
