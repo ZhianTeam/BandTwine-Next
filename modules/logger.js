@@ -1,6 +1,6 @@
 /*
   File: logger.js
-  Revision number: 3
+  Revision number: 5
   License: GPL-3.0
   Copyleft (c) 2025-2026 ZhianTeam. All rights may not reserved.
 
@@ -11,6 +11,7 @@
 
 import { execSync } from 'node:child_process';
 import { isatty } from 'node:tty';
+import { enhanceMessage, expressSuccess } from './personality.js';
 
 const ANSI = {
 	reset: '\x1b[0m',
@@ -84,6 +85,7 @@ class Logger {
 		this.cLocale = options.cLocale || false;
 		this.noColor = options.noColor || false;
 		this.forceNerd = options.forceNerd || false;
+		this.strict = options.strict || false;
 
 		this.isCI = process.env.CI === 'true' || process.env.CONTINUOUS_INTEGRATION === 'true';
 		this.isTTY = isatty(1);
@@ -208,24 +210,28 @@ class Logger {
 	warning(text, location = null) {
 		if (this.silent) return;
 
+		const enhanced = enhanceMessage(text, 'warning', this.cLocale);
+
 		const prefix = this.color('::', ANSI.yellowBold);
 		const label = this.color(`${this.locale.warning}:`, ANSI.yellowBold);
 
 		if (location) {
-			console.log(`${prefix} ${label} ${location}: ${text}`);
+			console.log(`${prefix} ${label} ${location}: ${enhanced}`);
 		} else {
-			console.log(`${prefix} ${label} ${text}`);
+			console.log(`${prefix} ${label} ${enhanced}`);
 		}
 	}
 
 	error(text, location = null) {
+		const enhanced = enhanceMessage(text, 'error', this.cLocale);
+
 		const prefix = this.color('::', ANSI.redBold);
 		const label = this.color(`${this.locale.error}:`, ANSI.redBold);
 
 		if (location) {
-			console.error(`${prefix} ${label} ${location}: ${text}`);
+			console.error(`${prefix} ${label} ${location}: ${enhanced}`);
 		} else {
-			console.error(`${prefix} ${label} ${text}`);
+			console.error(`${prefix} ${label} ${enhanced}`);
 		}
 	}
 
@@ -254,8 +260,10 @@ class Logger {
 	success(text) {
 		if (this.silent) return;
 
+		const message = text || (this.cLocale ? this.locale.success : expressSuccess());
+
 		const symbol = this.hasNerdFont ? '󰄬' : '✓';
-		console.log(`${this.color(symbol, ANSI.greenBold)} ${text}`);
+		console.log(`${this.color(symbol, ANSI.greenBold)} ${message}`);
 	}
 
 	fail(text, errno = 1) {

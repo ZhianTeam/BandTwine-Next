@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /*
   File: usagi.js
-  Revision number: 4
+  Revision number: 6
   License: GPL-3.0
   Copyleft (c) 2025-2026 ZhianTeam. All rights may not reserved.
 
@@ -20,6 +20,9 @@ import Logger from './logger.js';
 import { compileKDL } from './kdlcomp/index.js';
 import { compileTwee } from './tweecomp/index.js';
 import { compressImages } from './imagecomp/index.js';
+import { loadDeviceTree, validateDeviceCodename } from './dts/loader.js';
+import { validateCrossReferences } from './cross-validator.js';
+import { expressProgress } from './personality.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -185,7 +188,8 @@ async function compile(options) {
 		silent: options.silent,
 		cLocale: options.cLocale,
 		noColor: options.noColor,
-		forceNerd: options.forceNerd
+		forceNerd: options.forceNerd,
+		strict: options.strict
 	});
 
 	let buildDir = null;
@@ -255,10 +259,60 @@ async function compile(options) {
 	process.on('SIGINT', handleSigint);
 	process.on('SIGTERM', handleSigterm);
 
+	if (options.interactive) {
+		const msg = logger.cLocale
+			? 'Interactive mode is not implemented yet. Use standard mode instead.'
+			: '交互模式还没有实现呢。请使用标准模式吧。';
+		logger.error(msg);
+		process.exit(1);
+	}
+
 	if (!options.mode) {
 		logger.error('Missing build mode: specify <build> or <release>');
 		logger.fail(null, 1);
 		process.exit(1);
+	}
+
+	logger.step('Loading devicetree...');
+	let deviceTree;
+	try {
+		deviceTree = loadDeviceTree();
+		logger.substep(`Loaded ${Object.keys(deviceTree).length} device definitions`);
+	} catch (err) {
+		logger.error(`Failed to load devicetree: ${err.message}`);
+		logger.fail(null, 1);
+		process.exit(1);
+	}
+
+	let targetDevices = [];
+	if (options.devices) {
+		const requestedDevices = options.devices.split(',').map(d => d.trim());
+		for (const codename of requestedDevices) {
+			try {
+				validateDeviceCodename(codename, deviceTree);
+				targetDevices.push(codename);
+			} catch (err) {
+				logger.error(err.message);
+				logger.fail(null, 1);
+				process.exit(1);
+			}
+		}
+		logger.substep(`Target devices: ${targetDevices.map(d => `${d} (${deviceTree[d].pretty})`).join(', ')}`);
+	} else {
+		targetDevices = ['n67'];
+		logger.substep('No devices specified, defaulting to n67 (Xiaomi Smart Band 9 Pro)');
+	}
+
+	const primaryDevice = deviceTree[targetDevices[0]];
+
+	if (options.jsc === null) {
+		options.jsc = primaryDevice.jscDefault ? 'on' : 'off';
+		logger.substep(`JSC auto-set to '${options.jsc}' based on device capabilities`);
+	}
+
+	if (options.pbf === null) {
+		options.pbf = primaryDevice.pbfDefault ? 'on' : 'off';
+		logger.substep(`PBF auto-set to '${options.pbf}' based on device capabilities`);
 	}
 
 	const aiotPath = checkAiotToolkit(options.customAiot);
@@ -309,7 +363,8 @@ async function compile(options) {
 	buildDir = options.customCwd || path.join(PROJECT_ROOT, '.bt-build', buildHash);
 
 	try {
-		logger.step('Creating temporary build directory...');
+		const stepMsg = logger.cLocale ? 'Creating temporary build directory...' : expressProgress('reading');
+		logger.step(stepMsg);
 		logger.updateSpinner(null, 5);
 		fs.mkdirSync(buildDir, { recursive: true });
 		logger.substep(`Created ${buildDir}`);
@@ -342,13 +397,53 @@ async function compile(options) {
 
 		logger.info('Compiling configuration...');
 		logger.updateSpinner(null, 20);
+		if (!logger.cLocale && logger.verbose) {
+			logger.substep(expressProgress('parsing'));
+		}
 		const configBinPath = path.join(buildSrcPath, 'bt', 'configs.bin');
-		await compileKDL(configPath, configBinPath, logger);
+		const configResult = await compileKDL(configPath, configBinPath, logger, {
+			deviceTree: deviceTree,
+			targetDevices: targetDevices
+		});
 
 		logger.info('Compiling story files...');
 		logger.updateSpinner(null, 35);
+		if (!logger.cLocale && logger.verbose) {
+			logger.substep(expressProgress('tokenizing'));
+		}
 		const storyBinPath = path.join(buildSrcPath, 'bt', 'story.bin');
-		await compileTwee(btPath, storyBinPath, logger);
+		const tweeResult = await compileTwee(btPath, storyBinPath, logger, { skipCheck: options.skipCheck });
+
+		if (!options.skipCheck) {
+			logger.info('Cross-validating references...');
+			logger.updateSpinner(null, 40);
+			if (!logger.cLocale && logger.verbose) {
+				logger.substep(expressProgress('validating'));
+			}
+			const crossCheck = validateCrossReferences(
+				configResult.data,
+				tweeResult.passages,
+				logger
+			);
+
+			if (crossCheck.errors.length > 0) {
+				for (const err of crossCheck.errors) {
+					const message = logger.cLocale ? err.message : (err.cMessage || err.message);
+					logger.error(message, err.context);
+				}
+				throw new Error('Cross-validation failed');
+			}
+
+			if (crossCheck.warnings.length > 0) {
+				for (const warn of crossCheck.warnings) {
+					const message = logger.cLocale ? warn.message : (warn.cMessage || warn.message);
+					const context = logger.cLocale ? warn.context : (warn.cContext || warn.context);
+					logger.warning(message, context);
+				}
+			}
+
+			logger.substep('Cross-validation passed');
+		}
 
 		logger.step('Cleaning up source files in build directory...');
 		const kdlFiles = fs.readdirSync(path.join(buildSrcPath, 'bt')).filter(f => f.endsWith('.kdl'));
@@ -365,6 +460,9 @@ async function compile(options) {
 
 		logger.info('Processing assets...');
 		logger.updateSpinner(null, 50);
+		if (!logger.cLocale && logger.verbose) {
+			logger.substep(expressProgress('encoding'));
+		}
 		const assetsPath = path.join(srcInnerPath, 'assets');
 		const buildAssetsPath = path.join(buildSrcPath, 'assets');
 
