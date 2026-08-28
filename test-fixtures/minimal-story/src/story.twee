@@ -1,0 +1,21 @@
+:: Start
+Welcome to the minimal test story!
+
+Your health is <<print $health>>.
+
+[[Continue to next passage|Next]]
+
+:: Next
+You are on the second passage.
+
+<<set $score += 10>>
+
+Your score is now <<print $score>>.
+
+[[Go back|Start]]
+[[End the story|End]]
+
+:: End [ending]
+Thanks for playing!
+
+Final score: <<print $score>>

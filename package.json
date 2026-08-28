@@ -15,6 +15,7 @@
   "scripts": {
     "usagi": "./modules/usagi.js",
     "neg": "./conv/neg.js",
+    "test": "node --test 'modules/**/__tests__/*.test.js' 'modules/**/test/*.test.js' 'src/**/__tests__/*.test.js'",
 
     "start": "aiot server --watch --open-nuttx",
     "build": "./modules/usagi.js --path . build -v",

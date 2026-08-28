@@ -1,0 +1,21 @@
+meta {
+	name "Minimal Test Story"
+	version "1.0.0"
+	description "A minimal story for E2E testing"
+	package "com.example.minimal"
+	icon "icon.png"
+	copyright {
+		author "Test Author"
+		license "AGPL-3.0"
+		year 2026
+	}
+}
+
+env {
+	health 100
+	score 0
+}
+
+properties {
+	startNode "Start"
+}

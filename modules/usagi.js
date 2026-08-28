@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 /*
-  File: usagi.js
-  Revision number: 6
-  License: GPL-3.0
-  Copyleft (c) 2025-2026 ZhianTeam. All rights may not reserved.
+	File: usagi.js
+	Revision number: 6
+	License: GPL-3.0
+	Copyleft (c) 2025-2026 ZhianTeam. All rights may not reserved.
 
-  This is the main entry point for Usagi compiler.
-  BandTwine is a FLOSS Software distributed under AGPL-3.0 license. This software comes with ABSOLUTELY NO WARRANTY.
-  You are welcome to redistribute it under certain conditions. See the GNU Affero General Public License for more details.
+	This is the main entry point for Usagi compiler.
+	BandTwine is a FLOSS Software distributed under AGPL-3.0 license. This software comes with ABSOLUTELY NO WARRANTY.
+	You are welcome to redistribute it under certain conditions. See the GNU Affero General Public License for more details.
 */
 
 import fs from 'node:fs';
@@ -35,28 +35,28 @@ function showHelp() {
 	console.log(`Usagi - Compiler actually does things for BandTwine
 
 Usage:
-  usagi --path <path|.> <build>|<release> [args] [flags]
+	usagi --path <path|.> <build>|<release> [args] [flags]
 
 Arguments:
- -i         --interactive      Compile with an embedded TUI
- -q               --quiet      Remove most of console messages
- -s              --silent      Single-line progress mode
- -v             --verbose      Output with more details
-               --c-locale      Force GNU POSIX C.UTF-8 locale for Output
- -S              --strict      Treat all warnings as errors and stop compilation immediately
-             --skip-check      Skip all checks and validations and post compilation immediately
- -N                --nerd      Force use Nerd Icons and Symbols
-               --no-color      Disable ANSI Coloring (automatically for pipe/redirection)
- -V             --version      Show version of Usagi
+ -i					--interactive			 Compile with an embedded TUI
+ -q								--quiet			 Remove most of console messages
+ -s							 --silent			 Single-line progress mode
+ -v							--verbose			 Output with more details
+							 --c-locale			 Force GNU POSIX C.UTF-8 locale for Output
+ -S							 --strict			 Treat all warnings as errors and stop compilation immediately
+						 --skip-check			 Skip all checks and validations and post compilation immediately
+ -N								 --nerd			 Force use Nerd Icons and Symbols
+							 --no-color			 Disable ANSI Coloring (automatically for pipe/redirection)
+ -V							--version			 Show version of Usagi
 
 Flags:
- -o       --output=<path>      Custom output artifact location (default: ./dist/)
-      --device=<codename>      Specify target devices (default: all), split by comma (,)
-           --jsc=<on|off>      Enable JavaScript Compilation (default varied by device)
-           --pbf=<on|off>      Enable protobuf embedding (default varied by device)
- -C          --cwd=<path>      Custom temporary building directory
- -c  --custom-aiot=<path>      Custom \`aiot-toolkit\` path for Usagi
- -d          --no-cleanup      Do not cleanup the temporary directory for debugging propose
+ -o				--output=<path>			 Custom output artifact location (default: ./dist/)
+			--device=<codename>			 Specify target devices (default: all), split by comma (,)
+					 --jsc=<on|off>			 Enable JavaScript Compilation (default varied by device)
+					 --pbf=<on|off>			 Enable protobuf embedding (default varied by device)
+ -C					 --cwd=<path>			 Custom temporary building directory
+ -c	 --custom-aiot=<path>			 Custom \`aiot-toolkit\` path for Usagi
+ -d					 --no-cleanup			 Do not cleanup the temporary directory for debugging propose
 `);
 }
 

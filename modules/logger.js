@@ -1,12 +1,12 @@
 /*
-  File: logger.js
-  Revision number: 5
-  License: GPL-3.0
-  Copyleft (c) 2025-2026 ZhianTeam. All rights may not reserved.
+	File: logger.js
+	Revision number: 6
+	License: GPL-3.0
+	Copyleft (c) 2025-2026 ZhianTeam. All rights may not reserved.
 
-  This is the output formatter for Usagi compiler.
-  BandTwine is a FLOSS Software distributed under AGPL-3.0 license. This software comes with ABSOLUTELY NO WARRANTY.
-  You are welcome to redistribute it under certain conditions. See the GNU Affero General Public License for more details.
+	This is the output formatter for Usagi compiler.
+	BandTwine is a FLOSS Software distributed under AGPL-3.0 license. This software comes with ABSOLUTELY NO WARRANTY.
+	You are welcome to redistribute it under certain conditions. See the GNU Affero General Public License for more details.
 */
 
 import { execSync } from 'node:child_process';
@@ -43,7 +43,7 @@ const CUTE_ZH = {
 	success: '✓ 编译成功！',
 	bracket_missing: '诶…？这里是不是漏掉了一个 \'>\' 呀？右边空空的，逻辑要流出来啦……',
 	bracket_hint: '在 Twee 故事中，<< 和 >> 是成对出现的哦。',
-	unknown_node: '咦？遇到了不认识的节点诶……',
+	unknown_node: '咦？遇到了不认识的节点欸……',
 	unknown_node_hint: '这个节点不在 KDL schema 里面哦，可能是拼写错误，或者还没有实现呢～',
 	invalid_value: '这个值……好像不太对劲？',
 	invalid_value_hint: '检查一下类型、格式或者取值范围吧！',
@@ -51,7 +51,7 @@ const CUTE_ZH = {
 	parse_error: '解析失败了……文件格式可能有问题哦',
 	validation_error: '验证没通过呢……',
 	missing_required: '必需的字段不见了！',
-	invalid_spdx: '这个许可证标识符……SPDX 数据库里没有诶',
+	invalid_spdx: '这个许可证标识符……SPDX 数据库里没有欸',
 	invalid_spdx_hint: '去 https://spdx.org/licenses/ 查一查正确的标识符吧～'
 };
 
@@ -196,7 +196,7 @@ class Logger {
 		if (this.silent || this.quiet) return;
 		if (!this.verbose) return;
 
-		const prefix = this.color('  -->', ANSI.greenBold);
+		const prefix = this.color('	 -->', ANSI.greenBold);
 		console.log(`${prefix} ${text}`);
 	}
 
@@ -243,7 +243,7 @@ class Logger {
 			const lineNum = line || '?';
 			const lineNumStr = String(lineNum).padStart(4);
 
-			console.error(`  ${lineNumStr} | ${lineContent}`);
+			console.error(`	 ${lineNumStr} | ${lineContent}`);
 
 			if (column) {
 				const pointer = ' '.repeat(lineNumStr.length + 3 + (parseInt(column) - 1)) + '^';
@@ -252,7 +252,7 @@ class Logger {
 
 			if (hint) {
 				const noteLabel = this.color(`${this.locale.note}:`, ANSI.cyan);
-				console.error(`  ${noteLabel} ${hint}`);
+				console.error(`	 ${noteLabel} ${hint}`);
 			}
 		}
 	}
