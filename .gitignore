@@ -1,5 +1,5 @@
 # `.gitignore` Template for BandTwine Next
-# Revision number: 3
+# Revision number: 4
 # License: AGPL-3.0
 # Copyleft (c) 2025-2026 ZhianTeam. All rights may not reserved.
 
@@ -24,13 +24,6 @@ pnpm-debug.log*
 logs/
 *.log
 *.log.*
-
-# Npm/Yarn config files.
-.npmrc
-.yarnrc
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
 
 # Build outputs.
 # Should not be published as they took a lot of unnecessary spaces.
