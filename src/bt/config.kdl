@@ -135,16 +135,16 @@ env {
 
 /*
   Properties node.
-  
-  This node sets some default settings at first launch. 
+
+  This node sets some default settings at first launch.
   Can be changed in settings or by some conditions.
-  
+
   Available subnodes:
-  - startNode: Override the start node's name. 
+  - startNode: Override the start node's tag name.
                Defaults to 'start'.
-               Whatever, you must include this flag to mark this chapter as start:
-               <<tag "<startNode-value>">>
+               Mark your start passage with this tag in SugarCube format:
+               :: PassageName [start]
 */
 properties {
-	startNode "start"	// <<tag "start">>
+	startNode "start"	// :: PassageName [start]
 }
