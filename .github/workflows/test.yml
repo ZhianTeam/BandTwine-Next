@@ -3,12 +3,12 @@ name: Test Suite
 on:
   push:
     branches:
-      - main
+      - master
       - 'dev/*'
       - 'fix/*'
   pull_request:
     branches:
-      - main
+      - master
       - 'dev/*'
       - 'fix/*'
 
