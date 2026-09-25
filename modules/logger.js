@@ -1,6 +1,6 @@
 /*
 	File: logger.js
-	Revision number: 6
+	Revision number: 8
 	License: GPL-3.0
 	Copyleft (c) 2025-2026 ZhianTeam. All rights may not reserved.
 
@@ -39,8 +39,8 @@ const CUTE_ZH = {
 	error: 'error',
 	warning: 'warning',
 	note: '才…才不会告诉你',
-	failed: '× 编译中止。哼～',
-	success: '✓ 编译成功！',
+	failed: '编译中止。哼～',
+	success: '编译成功！',
 	bracket_missing: '诶…？这里是不是漏掉了一个 \'>\' 呀？右边空空的，逻辑要流出来啦……',
 	bracket_hint: '在 Twee 故事中，<< 和 >> 是成对出现的哦。',
 	unknown_node: '咦？遇到了不认识的节点欸……',
@@ -196,7 +196,7 @@ class Logger {
 		if (this.silent || this.quiet) return;
 		if (!this.verbose) return;
 
-		const prefix = this.color('	 -->', ANSI.greenBold);
+		const prefix = this.color('  -->', ANSI.greenBold);
 		console.log(`${prefix} ${text}`);
 	}
 
@@ -243,7 +243,7 @@ class Logger {
 			const lineNum = line || '?';
 			const lineNumStr = String(lineNum).padStart(4);
 
-			console.error(`	 ${lineNumStr} | ${lineContent}`);
+			console.error(`  ${lineNumStr} | ${lineContent}`);
 
 			if (column) {
 				const pointer = ' '.repeat(lineNumStr.length + 3 + (parseInt(column) - 1)) + '^';
@@ -252,7 +252,7 @@ class Logger {
 
 			if (hint) {
 				const noteLabel = this.color(`${this.locale.note}:`, ANSI.cyan);
-				console.error(`	 ${noteLabel} ${hint}`);
+				console.error(`  ${noteLabel} ${hint}`);
 			}
 		}
 	}

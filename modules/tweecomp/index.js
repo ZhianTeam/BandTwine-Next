@@ -1,6 +1,6 @@
 /*
   File: index.js
-  Revision number: 1
+  Revision number: 2
   License: GPL-3.0
   Copyleft (c) 2025-2026 ZhianTeam. All rights may not reserved.
 
@@ -145,7 +145,8 @@ export async function compileTwee(inputDir, outputPath = 'story.bin', logger = n
 		success: true,
 		passageCount: allPassages.length,
 		binarySize: binary.length,
-		sourceFiles: tweeFiles.length
+		sourceFiles: tweeFiles.length,
+		passages: allPassages
 	};
 }
 

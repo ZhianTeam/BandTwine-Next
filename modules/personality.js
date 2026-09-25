@@ -1,6 +1,6 @@
 /*
 	File: personality.js
-	Revision number: 1
+	Revision number: 2
 	License: GPL-3.0
 	Copyleft (c) 2025-2026 ZhianTeam. All rights may not reserved.
 
@@ -28,32 +28,32 @@ function randomMood(mood) {
 export function expressWarning(type, context = {}) {
 	const templates = {
 		'missing-field': [
-			`Hmm, I can't find ${context.field || 'this field'}... ${randomMood('worried')}`,
-			`Wait, where's ${context.field || 'this'}? ${randomMood('worried')}`,
-			`I'm looking for ${context.field || 'something'} but it's not here... ${randomMood('pout')}`,
-			`${context.field || 'This field'} seems to be missing ${randomMood('thinking')}`
+			`嗯…找不到 ${context.field || '这个字段'} 欸… ${randomMood('worried')}`,
+			`咦，${context.field || '这个'} 跑哪里去了？ ${randomMood('worried')}`,
+			`我在找 ${context.field || '某个东西'}，但它不在这里… ${randomMood('pout')}`,
+			`${context.field || '这个字段'} 好像不见了 ${randomMood('thinking')}`
 		],
 		'invalid-format': [
-			`This ${context.field || 'value'} looks a bit off to me ${randomMood('pout')}`,
-			`I'm not sure about this ${context.field || 'format'}... ${randomMood('thinking')}`,
-			`Hmm, ${context.field || 'this'} doesn't seem quite right ${randomMood('worried')}`,
-			`Something's not matching up with ${context.field || 'this'} ${randomMood('pout')}`
+			`这个 ${context.field || '值'} 看起来有点奇怪欸 ${randomMood('pout')}`,
+			`我不太确定这个 ${context.field || '格式'}… ${randomMood('thinking')}`,
+			`嗯，${context.field || '这个'} 好像不太对劲 ${randomMood('worried')}`,
+			`${context.field || '这个'} 跟预期的不太一样呢 ${randomMood('pout')}`
 		],
 		'deprecated': [
-			`Oh! ${context.field || 'This'} is deprecated now ${randomMood('worried')}`,
-			`Psst... ${context.field || 'this'} won't work in future versions! ${randomMood('worried')}`,
-			`${context.field || 'This'} is getting old, better update it ${randomMood('thinking')}`,
-			`Future versions won't support ${context.field || 'this'} anymore ${randomMood('pout')}`
+			`哦！${context.field || '这个'} 已经过时啦 ${randomMood('worried')}`,
+			`嘘…${context.field || '这个'} 在未来版本里不能用了哦！ ${randomMood('worried')}`,
+			`${context.field || '这个'} 太老了，最好更新一下 ${randomMood('thinking')}`,
+			`未来版本不会再支持 ${context.field || '这个'} 了 ${randomMood('pout')}`
 		],
 		'unknown-node': [
-			`I don't recognize this node... ${randomMood('thinking')}`,
-			`This node isn't in my schema ${randomMood('worried')}`,
-			`Hmm, never seen this node before ${randomMood('pout')}`
+			`我不认识这个节点… ${randomMood('thinking')}`,
+			`这个节点不在我的 schema 里 ${randomMood('worried')}`,
+			`嗯，从来没见过这个节点 ${randomMood('pout')}`
 		],
 		'validation': [
-			`Something doesn't check out here ${randomMood('worried')}`,
-			`I'm having trouble validating this ${randomMood('pout')}`,
-			`This didn't pass my checks ${randomMood('thinking')}`
+			`这里有些地方检查不通过 ${randomMood('worried')}`,
+			`我在验证这个的时候遇到了困难 ${randomMood('pout')}`,
+			`这个没通过我的检查 ${randomMood('thinking')}`
 		]
 	};
 
@@ -64,32 +64,32 @@ export function expressWarning(type, context = {}) {
 export function expressError(type, context = {}) {
 	const templates = {
 		'parse-error': [
-			`I can't parse this... ${randomMood('sad')}`,
-			`Syntax error! I'm confused ${randomMood('sad')}`,
-			`The parser stopped here ${randomMood('sad')}`,
-			`Something broke my parser ${randomMood('sad')}`
+			`我没法解析这个… ${randomMood('sad')}`,
+			`语法错误！我糊涂了 ${randomMood('sad')}`,
+			`解析器在这里停下了 ${randomMood('sad')}`,
+			`有什么东西把我的解析器弄坏了 ${randomMood('sad')}`
 		],
 		'validation-error': [
-			`This won't work, sorry ${randomMood('sad')}`,
-			`I can't accept this configuration ${randomMood('sad')}`,
-			`Validation failed here ${randomMood('sad')}`,
-			`Can't proceed with this setup ${randomMood('sad')}`
+			`这个不行，抱歉 ${randomMood('sad')}`,
+			`我不能接受这个配置 ${randomMood('sad')}`,
+			`验证在这里失败了 ${randomMood('sad')}`,
+			`没法用这个设置继续下去 ${randomMood('sad')}`
 		],
 		'missing-required': [
-			`${context.field || 'This field'} is required! I need it to continue ${randomMood('sad')}`,
-			`Without ${context.field || 'this'}, I can't go on... ${randomMood('sad')}`,
-			`${context.field || 'This'} must be provided ${randomMood('sad')}`,
-			`I really need ${context.field || 'this field'} to compile ${randomMood('sad')}`
+			`${context.field || '这个字段'} 是必需的！我需要它才能继续 ${randomMood('sad')}`,
+			`没有 ${context.field || '这个'}，我没法继续… ${randomMood('sad')}`,
+			`${context.field || '这个'} 必须提供 ${randomMood('sad')}`,
+			`我真的需要 ${context.field || '这个字段'} 来编译 ${randomMood('sad')}`
 		],
 		'file-error': [
-			`Can't find the file ${randomMood('sad')}`,
-			`File not found... ${randomMood('sad')}`,
-			`I looked everywhere but can't find it ${randomMood('sad')}`
+			`找不到文件 ${randomMood('sad')}`,
+			`文件不存在… ${randomMood('sad')}`,
+			`我到处找了但找不到它 ${randomMood('sad')}`
 		],
 		'device-error': [
-			`This device doesn't support this feature ${randomMood('sad')}`,
-			`Incompatible device configuration ${randomMood('sad')}`,
-			`Target device lacks required capabilities ${randomMood('sad')}`
+			`这个设备不支持这个功能 ${randomMood('sad')}`,
+			`设备配置不兼容 ${randomMood('sad')}`,
+			`目标设备缺少必需的能力 ${randomMood('sad')}`
 		]
 	};
 
@@ -99,12 +99,12 @@ export function expressError(type, context = {}) {
 
 export function expressSuccess() {
 	const messages = [
-		`Compilation succeeded! ${randomMood('happy')}`,
-		`All done! That was fun ${randomMood('happy')}`,
-		`Success! Everything looks perfect ${randomMood('happy')}`,
-		`Built successfully! ${randomMood('happy')}`,
-		`Perfect! No errors found ${randomMood('happy')}`,
-		`Yay! Compilation complete ${randomMood('happy')}`
+		`编译成功啦！ ${randomMood('happy')}`,
+		`全部完成！好开心 ${randomMood('happy')}`,
+		`成功！一切看起来都很完美 ${randomMood('happy')}`,
+		`构建成功！ ${randomMood('happy')}`,
+		`完美！没有发现错误 ${randomMood('happy')}`,
+		`耶！编译完成 ${randomMood('happy')}`
 	];
 
 	return randomFrom(messages);
@@ -113,38 +113,38 @@ export function expressSuccess() {
 export function expressProgress(step) {
 	const templates = {
 		'reading': [
-			'Reading configuration...',
-			'Loading config files...',
-			'Parsing configuration...'
+			'正在读取配置文件…',
+			'加载配置文件中…',
+			'解析配置中…'
 		],
 		'tokenizing': [
-			'Tokenizing... almost there!',
-			'Breaking down the syntax...',
-			'Scanning tokens...'
+			'词法分析中…快好了！',
+			'正在拆解语法…',
+			'扫描 token 中…'
 		],
 		'parsing': [
-			'Parsing structure...',
-			'Building syntax tree...',
-			'Analyzing code...'
+			'解析结构中…',
+			'构建语法树…',
+			'分析代码中…'
 		],
 		'validating': [
-			'Validating everything...',
-			'Running checks...',
-			'Making sure it all works...'
+			'验证所有内容…',
+			'运行检查中…',
+			'确保一切正常…'
 		],
 		'encoding': [
-			'Encoding to binary... making it tiny!',
-			'Compressing data...',
-			'Creating BTNC format...'
+			'编码成二进制…让它变小小！',
+			'压缩数据中…',
+			'创建 BTNC 格式…'
 		],
 		'writing': [
-			'Writing output files...',
-			'Saving compiled binary...',
-			'Generating package...'
+			'写入输出文件…',
+			'保存编译后的二进制文件…',
+			'生成包文件…'
 		]
 	};
 
-	const messages = templates[step] || ['Processing...'];
+	const messages = templates[step] || ['处理中…'];
 	const base = randomFrom(messages);
 
 	if (Math.random() < 0.3) {
