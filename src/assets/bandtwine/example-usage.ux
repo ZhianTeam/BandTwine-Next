@@ -1,0 +1,129 @@
+/*
+	File: bt/example-usage.ux
+	Revision number: 1
+	License: AGPL-3.0
+	Copyleft (c) 2025-2026 ZhianTeam. All rights reserved.
+
+	This is BandTwine. A FLOSS interactive fiction engine.
+	Example showing how to use BTNC/BTSC decoders in Vela runtime.
+*/
+
+<template>
+	<div class="container">
+		<text class="title">{{ currentPassage.name }}</text>
+		<text class="content">{{ currentPassage.content }}</text>
+		<div class="links">
+			<text class="link" for="{{ links }}" onclick="navigate">{{ $item }}</text>
+		</div>
+	</div>
+</template>
+
+<script>
+import { loadConfig } from './decoder-config.js';
+import { loadStory } from './decoder-story.js';
+
+export default {
+	data: {
+		config: null,
+		story: null,
+		currentPassage: {
+			name: 'Loading...',
+			content: 'Please wait...'
+		},
+		links: [],
+		env: {}
+	},
+
+	onInit() {
+		try {
+			this.config = loadConfig('/data/configs.bin');
+			this.story = loadStory('/data/story.bin');
+
+			this.env = Object.assign({}, this.config.env);
+
+			const startNode = this.config.properties.startNode || 'Start';
+			this.showPassage(startNode);
+		} catch (e) {
+			console.error('Failed to load story:', e);
+			this.currentPassage = {
+				name: 'Error',
+				content: 'Failed to load story: ' + e.message
+			};
+		}
+	},
+
+	showPassage(name) {
+		const passage = this.story.getPassage(name);
+		if (!passage) {
+			this.currentPassage = {
+				name: 'Error',
+				content: 'Passage not found: ' + name
+			};
+			this.links = [];
+			return;
+		}
+
+		this.currentPassage = passage;
+		this.links = this.extractLinks(passage.content);
+	},
+
+	extractLinks(content) {
+		const linkPattern = /\[\[([^\]]+)\]\]/g;
+		const links = [];
+		let match;
+
+		while ((match = linkPattern.exec(content)) !== null) {
+			const linkText = match[1];
+			const parts = linkText.split('->');
+			const display = parts[0].trim();
+			const target = parts.length > 1 ? parts[1].trim() : display;
+			links.push({ display, target });
+		}
+
+		return links;
+	},
+
+	navigate(evt) {
+		const link = evt.target.attr.value;
+		this.showPassage(link.target);
+	},
+
+	onDestroy() {
+		this.config = null;
+		this.story = null;
+		this.currentPassage = null;
+		this.links = null;
+		this.env = null;
+	}
+};
+</script>
+
+<style>
+.container {
+	flex-direction: column;
+	padding: 20px;
+}
+
+.title {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 16px;
+}
+
+.content {
+	font-size: 18px;
+	line-height: 1.5;
+	margin-bottom: 24px;
+}
+
+.links {
+	flex-direction: column;
+}
+
+.link {
+	font-size: 16px;
+	color: #0066cc;
+	padding: 8px;
+	margin-bottom: 8px;
+}
+</style>
