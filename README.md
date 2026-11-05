@@ -15,6 +15,8 @@
 
 **BandTwine** is a 3party implementation/port of [Twine](https://twinery.org/), which is a groundbreaking interactive fiction engine. 
 
+<!-- placeholder -->
+
 We’ve brought its powerful, open-ended storytelling capabilities to resource-constrained Xiaomi wearables running HyperOS (NuttX) - affectionately dubbed the "Wrist Steam Engine" by [AstroBox](https://github.com/AstralSightStudios/AstroBox-NG) (lol).
 
 ## Core: Twee Compatibility
@@ -150,19 +152,35 @@ For beginners of Twee there were many docs and even an [interactive step-by-step
 </p>
 
 ## Supported Devices
+> [!TIP]
+> ### Story Compatibility Notes
+> BandTwine Next is built from the ground up to run smoothly on legacy hardware. However, **that doesn't guarantee the writers, creators, or developers crafting Twee stories will keep older devices in mind!**
+> 
+> BandTwine allows custom userscripts to boost interactivity and gameplay. Creators might leverage features exclusive to newer hardware—for example, tapping into battery levels and charging states via the `battery` API to steer the narrative down different branching paths based on your real-world status. Because this API requires API Level `4`, it is only available on newer hardware, leaving you stuck without access to alternative storylines.
+> 
+> Here is a quick breakdown of API Levels across band models:
+> - **Xiaomi Smart Band 8 Pro**: Level `1` (platform version `1000`)
+> - **Xiaomi Smart Band 9 / 9 Pro**: Level `2` (platform version `1200`)
+> - **Xiaomi Smart Band 10 / 10 Pro / 11**: Level `4` (platform version `2000`)
+> 
+> **Are you a reader or player?** Take a breath and kick back—you've done nothing wrong, and there's no need to stress. This isn't a glitch with Xiaomi Vela or the BandTwine engine itself, so there's no need to go through the trouble of filing tickets on Xiaomi's boards or our bug tracker. Simply give the story's author a friendly heads-up, and you're good to go.
+> 
+> **Are you a developer?** Always wrap critical API calls in `try...catch` blocks and provide graceful fallbacks for older devices. For APIs requiring event subscriptions, be mindful of callback management and implement exponential backoff where appropriate. For details on API feature support across different hardware revisions, refer to the [Device Tree specification](./modules/dts/devicetree.dts.kdl) and the [official Xiaomi documentation](https://iot.mi.com/vela/quickapp/en/features).
+
 | Brand | Type | Model | Status | Note |
 |-------|------|-------|--------|------|
-| Xiaomi | Smart Band | 10 Series | ✓ Full Support | Tested on real Steam Engine. |
+| Xiaomi | Smart Band | 11 Series | ✓ Full Support | Tested on real Steam Engine. [^2] |
+| | | 10 Pro | ✓ Full Support | Tested on real Steam Engine. [^2] |
+| | | 10 (Standard/NFC) | ✓ Full Support | Tested on real Steam Engine. |
 | | | 9 Pro | ✓ Full Support | Tested on real Steam Engine. |
-| | | 9 (Standard/NFC) | 🟡 Partial Support | Tested on real Steam Engine. Needs a workaround [^2]. I'll try to fix it. |
+| | | 9 (Standard/NFC) | 🟡 Partial Support | Tested on real Steam Engine. Needs a workaround [^3]. I'll try to fix it. |
 | | | 8 Pro | ✓ Full Support | |
 | | Smart Watch | S5/4/3 | ✓ Full Support* | I don't have a real one. More reports needed. |
 | REDMI | Smart Watch | 5/4 | ⚪ In Progress | Same as *Xiaomi Smart Watch*. |
 | | Smart Band | *any* | × Unsupported | **Non-Vela** devices. |
 
-[^2]: Needs to change `designWidth` in `manifest.json` to `212`.
-
-<!-- placeholder -->
+[^2]: It's true - I actually managed to snag one on launch day!
+[^3]: Needs to change `designWidth` in `manifest.json` to `212`.
 
 ## License
 Inherited from original project - **AGPLv3**.
